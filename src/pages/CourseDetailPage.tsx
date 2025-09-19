@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
-import { Clock, Users, MapPin, Calendar, GraduationCap } from 'lucide-react';
+import { Clock, Users, MapPin, Calendar, GraduationCap, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { supabase } from '../lib/supabase';
 import type { Course } from '../types/course';
@@ -17,6 +17,12 @@ export const CourseDetailPage: React.FC = () => {
   const courseId = getCourseIdFromPath();
   const [course, setCourse] = useState<Course | null>(null);
   const [activeTab, setActiveTab] = useState('apresentacao');
+  const [openAccordions, setOpenAccordions] = useState<{ [key: string]: boolean }>({
+    apresentacao: true,
+    programa: false,
+    coordenacao: false,
+    documentos: false
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -83,6 +89,141 @@ export const CourseDetailPage: React.FC = () => {
     { id: 'documentos', label: 'Documentos' }
   ];
 
+  const toggleAccordion = (tabId: string) => {
+    setOpenAccordions(prev => ({
+      ...prev,
+      [tabId]: !prev[tabId]
+    }));
+  };
+
+  const renderTabContent = (tabId: string) => {
+    if (tabId === 'apresentacao') {
+      return (
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-xl font-bold text-blue-900 mb-4">SOBRE O CURSO</h2>
+            <p className="text-gray-700 leading-relaxed">{course?.content.about}</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-blue-900 mb-4">A QUEM SE DESTINA?</h2>
+            <p className="text-gray-700 leading-relaxed">{course?.content.target_audience}</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (tabId === 'programa') {
+      return (
+        <div>
+          <h2 className="text-xl font-bold text-blue-900 mb-4">PROGRAMA DO CURSO</h2>
+          <div className="space-y-4">
+            {course?.content.program.map((item, index) => (
+              <div key={index} className="flex items-start justify-between p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-start flex-1">
+                  <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                    {index + 1}
+                  </span>
+                  <span className="text-gray-700 font-medium">
+                    {typeof item === 'string' ? item : item.name}
+                  </span>
+                </div>
+                {typeof item === 'object' && item.hours > 0 && (
+                  <div className="text-sm text-blue-600 font-semibold">
+                    {item.hours}h
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (tabId === 'coordenacao') {
+      return (
+        <div>
+          <h2 className="text-xl font-bold text-blue-900 mb-4">COORDENAÇÃO</h2>
+          
+          {/* Coordenação Geral */}
+          {(course?.content.coordination_general || course?.content.coordination_general_photo) && (
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação Geral</h3>
+              <div className="flex flex-col md:flex-row gap-6 items-start">
+                {course?.content.coordination_general_photo && (
+                  <div className="flex-shrink-0">
+                    <img
+                      src={course.content.coordination_general_photo}
+                      alt="Coordenador Geral"
+                      className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
+                    />
+                  </div>
+                )}
+                {course?.content.coordination_general && (
+                  <div className="flex-1">
+                    <p className="text-gray-700 leading-relaxed">
+                      {course.content.coordination_general}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Coordenação */}
+          {(course?.content.coordination || course?.content.coordination_photo) && (
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação do Curso</h3>
+              <div className="flex flex-col md:flex-row gap-6 items-start">
+                {course?.content.coordination_photo && (
+                  <div className="flex-shrink-0">
+                    <img
+                      src={course.content.coordination_photo}
+                      alt="Coordenador do Curso"
+                      className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
+                    />
+                  </div>
+                )}
+                {course?.content.coordination && (
+                  <div className="flex-1">
+                    <p className="text-gray-700 leading-relaxed">
+                      {course.content.coordination}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Mensagem quando não há coordenação cadastrada */}
+          {!course?.content.coordination_general && !course?.content.coordination_general_photo && 
+           !course?.content.coordination && !course?.content.coordination_photo && (
+            <p className="text-gray-500 italic">Informações de coordenação não disponíveis.</p>
+          )}
+        </div>
+      );
+    }
+
+    if (tabId === 'documentos') {
+      return (
+        <div>
+          <h2 className="text-xl font-bold text-blue-900 mb-4">DOCUMENTOS NECESSÁRIOS</h2>
+          <div 
+            className="prose prose-sm max-w-none text-gray-700"
+            dangerouslySetInnerHTML={{ 
+              __html: typeof course?.content.requirements === 'string' 
+                ? course.content.requirements 
+                : Array.isArray(course?.content.requirements)
+                  ? course.content.requirements.map(req => `<p>• ${req}</p>`).join('')
+                  : ''
+            }}
+          />
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -110,9 +251,10 @@ export const CourseDetailPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Tabs */}
+          {/* Desktop Tabs / Mobile Accordions */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-            <div className="border-b">
+            {/* Desktop Tabs */}
+            <div className="border-b hidden md:block">
               <nav className="flex space-x-8">
                 {tabs.map((tab) => (
                   <button
@@ -130,122 +272,33 @@ export const CourseDetailPage: React.FC = () => {
               </nav>
             </div>
 
-            <div className="p-6">
-              {activeTab === 'apresentacao' && (
-                <div className="space-y-8">
-                  <div>
-                    <h2 className="text-xl font-bold text-blue-900 mb-4">SOBRE O CURSO</h2>
-                    <p className="text-gray-700 leading-relaxed">{course.content.about}</p>
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold text-blue-900 mb-4">A QUEM SE DESTINA?</h2>
-                    <p className="text-gray-700 leading-relaxed">{course.content.target_audience}</p>
-                  </div>
-                </div>
-              )}
+            {/* Desktop Tab Content */}
+            <div className="p-6 hidden md:block">
+              {renderTabContent(activeTab)}
+            </div>
 
-              {activeTab === 'programa' && (
-                <div>
-                  <h2 className="text-xl font-bold text-blue-900 mb-4">PROGRAMA DO CURSO</h2>
-                  <div className="space-y-4">
-                    {course.content.program.map((item, index) => (
-                      <div key={index} className="flex items-start justify-between p-4 bg-gray-50 rounded-lg">
-                        <div className="flex items-start flex-1">
-                        <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
-                          {index + 1}
-                        </span>
-                          <span className="text-gray-700 font-medium">
-                            {typeof item === 'string' ? item : item.name}
-                          </span>
-                        </div>
-                        {typeof item === 'object' && item.hours > 0 && (
-                          <div className="text-sm text-blue-600 font-semibold">
-                            {item.hours}h
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'coordenacao' && (
-                <div>
-                  <h2 className="text-xl font-bold text-blue-900 mb-4">COORDENAÇÃO</h2>
-                  
-                  {/* Coordenação Geral */}
-                  {(course.content.coordination_general || course.content.coordination_general_photo) && (
-                    <div className="mb-8">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação Geral</h3>
-                      <div className="flex flex-col md:flex-row gap-6 items-start">
-                        {course.content.coordination_general_photo && (
-                          <div className="flex-shrink-0">
-                            <img
-                              src={course.content.coordination_general_photo}
-                              alt="Coordenador Geral"
-                              className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
-                            />
-                          </div>
-                        )}
-                        {course.content.coordination_general && (
-                          <div className="flex-1">
-                            <p className="text-gray-700 leading-relaxed">
-                              {course.content.coordination_general}
-                            </p>
-                          </div>
-                        )}
-                      </div>
+            {/* Mobile Accordions */}
+            <div className="md:hidden">
+              {tabs.map((tab) => (
+                <div key={tab.id} className="border-b border-gray-200 last:border-b-0">
+                  <button
+                    onClick={() => toggleAccordion(tab.id)}
+                    className="w-full px-6 py-4 text-left flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors"
+                  >
+                    <span className="font-medium text-gray-900">{tab.label}</span>
+                    {openAccordions[tab.id] ? (
+                      <ChevronUp className="h-5 w-5 text-gray-500" />
+                    ) : (
+                      <ChevronDown className="h-5 w-5 text-gray-500" />
+                    )}
+                  </button>
+                  {openAccordions[tab.id] && (
+                    <div className="px-6 py-4">
+                      {renderTabContent(tab.id)}
                     </div>
                   )}
-
-                  {/* Coordenação */}
-                  {(course.content.coordination || course.content.coordination_photo) && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação do Curso</h3>
-                      <div className="flex flex-col md:flex-row gap-6 items-start">
-                        {course.content.coordination_photo && (
-                          <div className="flex-shrink-0">
-                            <img
-                              src={course.content.coordination_photo}
-                              alt="Coordenador do Curso"
-                              className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
-                            />
-                          </div>
-                        )}
-                        {course.content.coordination && (
-                          <div className="flex-1">
-                            <p className="text-gray-700 leading-relaxed">
-                              {course.content.coordination}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Mensagem quando não há coordenação cadastrada */}
-                  {!course.content.coordination_general && !course.content.coordination_general_photo && 
-                   !course.content.coordination && !course.content.coordination_photo && (
-                    <p className="text-gray-500 italic">Informações de coordenação não disponíveis.</p>
-                  )}
                 </div>
-              )}
-
-              {activeTab === 'documentos' && (
-                <div>
-                  <h2 className="text-xl font-bold text-blue-900 mb-4">DOCUMENTOS NECESSÁRIOS</h2>
-                  <div 
-                    className="prose prose-sm max-w-none text-gray-700"
-                    dangerouslySetInnerHTML={{ 
-                      __html: typeof course.content.requirements === 'string' 
-                        ? course.content.requirements 
-                        : Array.isArray(course.content.requirements)
-                          ? course.content.requirements.map(req => `<p>• ${req}</p>`).join('')
-                          : ''
-                    }}
-                  />
-                </div>
-              )}
+              ))}
             </div>
           </div>
 
