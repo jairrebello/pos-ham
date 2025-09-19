@@ -1,0 +1,5 @@
+# Redirects para manter compatibilidade com URLs antigas
+/courses /cursos 301
+/course/* /curso/:splat 301
+
+/* /index.html 200
