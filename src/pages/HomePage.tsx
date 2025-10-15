@@ -239,7 +239,7 @@ export const HomePage: React.FC = () => {
 
           <div className="text-center">
             <a
-              href="/cursos"
+              href="/"
               className="inline-flex items-center text-white px-8 py-3 rounded-lg font-semibold transition-colors"
               style={{ backgroundColor: '#02558C' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#024a7a'}
