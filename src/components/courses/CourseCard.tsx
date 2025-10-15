@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Clock, Users, MapPin } from 'lucide-react';
+import { ArrowRight, Clock, Users, MapPin, Calendar } from 'lucide-react';
 import type { Course } from '../../types/course';
 
 interface CourseCardProps {
@@ -14,71 +14,100 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     hibrido: 'HÍBRIDO'
   };
 
-  const modalityColors = {
-    presencial: 'bg-green-500',
-    online: 'bg-blue-500',
-    ead: 'bg-purple-500',
-    hibrido: 'bg-orange-500'
+  const areaColors = {
+    educacao: 'bg-green-400',
+    gestao: 'bg-purple-400',
+    saude: 'bg-cyan-400',
+    psicologia: 'bg-pink-400',
+    tecnologia: 'bg-blue-400',
+    direito: 'bg-orange-400',
+    engenharia: 'bg-red-400'
+  };
+
+  const getAreaColor = (area: string) => {
+    return areaColors[area as keyof typeof areaColors] || 'bg-gray-400';
+  };
+
+  const formatStartDate = (dateString: string) => {
+    if (!dateString) return 'A definir';
+    
+    const date = new Date(dateString + 'T00:00:00');
+    const month = date.toLocaleDateString('pt-BR', { month: 'short' }).toUpperCase();
+    const year = date.getFullYear();
+    
+    return `${month}/${year}`;
   };
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-      <div className="relative">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+      {/* Imagem do curso */}
+      <div className="relative h-48 overflow-hidden">
         <img
           src={course.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=400'}
           alt={course.title}
-          className="w-full h-48 object-cover"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-black bg-opacity-70 text-white text-sm rounded">
-            {course.area}
-          </span>
-        </div>
-        <div className="absolute top-4 right-4">
-          <span className={`px-3 py-1 text-white text-sm rounded ${modalityColors[course.modality]}`}>
+        
+        {/* Overlay gradiente */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      </div>
+
+      {/* Faixa da área */}
+      <div className={`${getAreaColor(course.area)} px-6 py-3 flex items-center justify-between`}>
+        <span className="text-white font-bold text-sm uppercase tracking-wide">
+          {course.area}
+        </span>
+        <div className="flex items-center space-x-2">
+          <span className="text-white/90 text-xs font-medium uppercase">
             {modalityLabels[course.modality]}
           </span>
+          {course.modality === 'online' && (
+            <span className="text-white/70 text-xs">(ao vivo)</span>
+          )}
         </div>
       </div>
-      
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+
+      {/* Seção principal azul */}
+      <div className="bg-blue-900 text-white px-6 py-6">
+        <h3 className="text-xl font-bold mb-4 leading-tight line-clamp-3">
           {course.title}
         </h3>
-        
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-          {course.short_description}
-        </p>
 
-        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center">
-              <Clock className="h-4 w-4 mr-1" />
-              <span>{course.duration_hours}h</span>
+        {/* Informações do curso */}
+        <div className="space-y-2 mb-6">
+          {course.start_date && (
+            <div className="flex items-center text-blue-200 text-sm">
+              <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
+              <span>Início: {formatStartDate(course.start_date)}</span>
             </div>
-            <div className="flex items-center">
-              <Users className="h-4 w-4 mr-1" />
-              <span>{course.max_students} vagas</span>
-            </div>
-            {course.location && (
-              <div className="flex items-center">
-                <MapPin className="h-4 w-4 mr-1" />
-                <span className="truncate">{course.location}</span>
-              </div>
-            )}
+          )}
+          
+          <div className="flex items-center text-blue-200 text-sm">
+            <Clock className="h-4 w-4 mr-2 flex-shrink-0" />
+            <span>{course.duration_hours}h de carga horária</span>
           </div>
+          
+          <div className="flex items-center text-blue-200 text-sm">
+            <Users className="h-4 w-4 mr-2 flex-shrink-0" />
+            <span>Até {course.max_students} alunos</span>
+          </div>
+          
+          {course.location && (
+            <div className="flex items-center text-blue-200 text-sm">
+              <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
+              <span>{course.location}</span>
+            </div>
+          )}
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="text-lg font-bold text-blue-600">
-            {course.modality}
-          </div>
+        {/* Botão Saiba mais */}
+        <div className="flex justify-end">
           <a
             href={`/curso/${course.slug}`}
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+            className="inline-flex items-center text-cyan-300 hover:text-white font-medium text-sm transition-colors duration-200 group"
           >
             Saiba mais
-            <ArrowRight className="ml-1 h-4 w-4" />
+            <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-200" />
           </a>
         </div>
       </div>
