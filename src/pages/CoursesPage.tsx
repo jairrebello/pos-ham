@@ -144,8 +144,8 @@ export const CoursesPage: React.FC = () => {
           </div>
           
           {/* Bottom Title Section */}
-          <div className="relative z-10 text-center mt-16">
-            <div className="inline-block px-8 py-4 rounded-lg" style={{ backgroundColor: '#E8FCFF' }}>
+          <div className="relative z-10 text-center mt-16" style={{ backgroundColor: '#E8FCFF' }}>
+            <div className="inline-block px-8 py-4 rounded-lg">
               <h1 className="text-5xl font-bold" style={{ color: '#02558C' }}>
                 Cursos de Pós-graduação
               </h1>
