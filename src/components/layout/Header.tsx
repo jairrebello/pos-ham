@@ -183,7 +183,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                       }
                     }}
                     onMouseEnter={() => hasSubmenu && setOpenDropdown(item.id)}
-                    className="flex items-center space-x-1 text-gray-700 hover:text-[#02558C] font-medium transition-colors duration-200 py-2"
+                    className="flex items-center space-x-1 text-gray-700 hover:bg-[rgb(2,85,140)] hover:text-white font-medium transition-colors duration-200 py-2 px-3 rounded"
                   >
                     <Icon className="h-4 w-4" />
                     <span className="text-sm">{item.label}</span>
