@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Clock, Users, MapPin, Calendar } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 import type { Course } from '../../types/course';
 
 interface CourseCardProps {
@@ -73,29 +73,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           {course.title}
         </h3>
 
-        {/* Informações do curso */}
-        <div className="space-y-2 mb-6 flex-1">
+        {/* Data de início */}
+        <div className="mb-6 flex-1">
           {course.start_date && (
             <div className="flex items-center text-blue-300 text-sm">
               <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
               <span>Início: {formatStartDate(course.start_date)}</span>
-            </div>
-          )}
-          
-          <div className="flex items-center text-blue-300 text-sm">
-            <Clock className="h-4 w-4 mr-2 flex-shrink-0" />
-            <span>{course.duration_hours}h de carga horária</span>
-          </div>
-          
-          <div className="flex items-center text-blue-300 text-sm">
-            <Users className="h-4 w-4 mr-2 flex-shrink-0" />
-            <span>Até {course.max_students} alunos</span>
-          </div>
-          
-          {course.location && (
-            <div className="flex items-center text-blue-300 text-sm">
-              <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
-              <span>{course.location}</span>
             </div>
           )}
         </div>
