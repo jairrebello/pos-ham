@@ -64,12 +64,14 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
                     className="peer sr-only"
                   />
                   <div
-                    className="w-5 h-5 border-2 rounded-full flex items-center justify-center peer-checked:bg-white transition-all"
-                    style={{ borderColor: '#02558C' }}
+                    className="w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all"
+                    style={{
+                      borderColor: '#02558C',
+                      backgroundColor: filters.modality.includes(option.value) ? '#02558C' : 'transparent'
+                    }}
                   >
                     <div
-                      className="w-2.5 h-2.5 rounded-full scale-0 peer-checked:scale-100 transition-transform"
-                      style={{ backgroundColor: '#02558C' }}
+                      className="w-2.5 h-2.5 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform"
                     ></div>
                   </div>
                 </div>
@@ -93,12 +95,14 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
                     className="peer sr-only"
                   />
                   <div
-                    className="w-5 h-5 border-2 rounded-full flex items-center justify-center peer-checked:bg-white transition-all"
-                    style={{ borderColor: '#02558C' }}
+                    className="w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all"
+                    style={{
+                      borderColor: '#02558C',
+                      backgroundColor: filters.area.includes(option.value) ? '#02558C' : 'transparent'
+                    }}
                   >
                     <div
-                      className="w-2.5 h-2.5 rounded-full scale-0 peer-checked:scale-100 transition-transform"
-                      style={{ backgroundColor: '#02558C' }}
+                      className="w-2.5 h-2.5 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform"
                     ></div>
                   </div>
                 </div>
