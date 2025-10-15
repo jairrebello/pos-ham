@@ -31,12 +31,13 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-blue-600 rounded flex items-center justify-center">
-                <span className="text-white font-bold text-xl">U</span>
-              </div>
-              <span className="text-xl font-bold text-blue-900">UNIAENE</span>
-            </div>
+            <a href="/">
+              <img
+                src="https://ham.org.br/wp-content/uploads/2025/03/marca-horizontal-hospital-manaus-positivo-colorido.png"
+                alt="Hospital Adventista Manaus"
+                className="h-12 w-auto"
+              />
+            </a>
           </div>
 
           {/* Desktop Navigation */}
