@@ -144,13 +144,11 @@ export const CoursesPage: React.FC = () => {
           </div>
           
           {/* Bottom Title Section */}
-          <div className="relative z-10 text-center mt-16" style={{ backgroundColor: '#E8FCFF' }}>
-            <div className="inline-block px-8 py-4 rounded-lg">
-              <h1 className="text-5xl font-bold" style={{ color: '#02558C' }}>
-                Cursos de Pós-graduação
-              </h1>
-            </div>
-            <p className="text-xl max-w-4xl mx-auto mt-6" style={{ color: '#02558C' }}>
+          <div className="relative z-10 text-center mt-16">
+            <h1 className="text-5xl font-bold mb-6" style={{ color: '#02558C' }}>
+              Cursos de Pós-graduação
+            </h1>
+            <p className="text-xl max-w-4xl mx-auto" style={{ color: '#02558C' }}>
               Para você que já possui uma graduação, o Hospital Adventista Manaus, oferece
             </p>
           </div>
