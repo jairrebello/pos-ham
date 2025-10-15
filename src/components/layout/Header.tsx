@@ -17,10 +17,9 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
         { label: 'Configurações', href: '/admin/settings' }
       ]
     : [
-        { label: 'HOME', href: '/' },
-        { label: 'CURSOS', href: '/cursos' },
+        { label: 'CURSOS', href: '/' },
+        { label: 'SOBRE', href: '/sobre' },
         { label: 'CURSOS LIVRES', href: '/free-courses' },
-        { label: 'SOBRE', href: '/about' },
         { label: 'ALUNO', href: '/student' },
         { label: 'DESCONTOS', href: '/discounts' },
         { label: 'AULAS GRATUITAS', href: '/free-classes' }

@@ -23,6 +23,8 @@ function App() {
   // Simple router implementation
   const renderPage = () => {
     if (currentPath === '/') {
+      return <CoursesPage />;
+    } else if (currentPath === '/sobre') {
       return <HomePage />;
     } else if (currentPath === '/cursos') {
       return <CoursesPage />;

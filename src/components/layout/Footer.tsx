@@ -29,8 +29,8 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
-              <li><a href="/cursos" className="text-gray-300 hover:text-white">Cursos</a></li>
-              <li><a href="/about" className="text-gray-300 hover:text-white">Sobre Nós</a></li>
+              <li><a href="/" className="text-gray-300 hover:text-white">Cursos</a></li>
+              <li><a href="/sobre" className="text-gray-300 hover:text-white">Sobre Nós</a></li>
               <li><a href="/contact" className="text-gray-300 hover:text-white">Contato</a></li>
               <li><a href="/blog" className="text-gray-300 hover:text-white">Blog</a></li>
             </ul>
