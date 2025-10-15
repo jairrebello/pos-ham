@@ -39,7 +39,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   };
 
   return (
-    <div className="bg-blue-800 rounded-tr-[2rem] rounded-bl-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col border-t-2 border-l-2 border-r-2 border-[rgb(2,85,140)]">
+    <div className="bg-blue-800 rounded-tr-[2rem] rounded-bl-[2rem] overflow-visible shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col border-t-2 border-l-2 border-r-2 border-[rgb(2,85,140)] relative">
       {/* Imagem do curso */}
       <div className="relative h-48 overflow-hidden rounded-tr-[2rem]">
         <img
@@ -47,23 +47,42 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           alt={course.title}
           className="w-full h-full object-cover rounded-tr-[2rem]"
         />
-        
+
         {/* Overlay gradiente */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
       </div>
 
-      {/* Faixa da área */}
-      <div className={`${getAreaColor(course.area)} px-6 py-3 flex items-center justify-between`}>
-        <span className="text-white font-bold text-sm uppercase tracking-wide">
-          {course.area}
-        </span>
-        <div className="flex items-center space-x-2">
-          <span className="text-white/90 text-xs font-medium uppercase">
-            {modalityLabels[course.modality]}
+      {/* Faixa da área com triângulo */}
+      <div className="relative" style={{ marginTop: '-1.5rem', zIndex: 10 }}>
+        {/* Triângulo esquerdo */}
+        <div
+          className="absolute left-0 top-0 w-0 h-0"
+          style={{
+            borderTop: '3rem solid transparent',
+            borderRight: '1.5rem solid #22D3EE',
+          }}
+        ></div>
+
+        {/* Faixa principal */}
+        <div
+          className="px-6 py-3 flex items-center justify-between relative"
+          style={{
+            backgroundColor: '#22D3EE',
+            marginLeft: '1.5rem',
+            paddingRight: '2rem'
+          }}
+        >
+          <span className="font-bold text-sm uppercase tracking-wide" style={{ color: '#02558C' }}>
+            {course.area}
           </span>
-          {course.modality === 'online' && (
-            <span className="text-white/70 text-xs">(ao vivo)</span>
-          )}
+          <div className="flex items-center space-x-2">
+            <span className="text-xs font-medium uppercase" style={{ color: '#02558C' }}>
+              {modalityLabels[course.modality]}
+            </span>
+            {course.modality === 'online' && (
+              <span className="text-xs" style={{ color: '#02558C', opacity: 0.7 }}>(ao vivo)</span>
+            )}
+          </div>
         </div>
       </div>
 
