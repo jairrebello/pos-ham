@@ -45,7 +45,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         <img
           src={course.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=400'}
           alt={course.title}
-          className="w-full h-full object-cover border border-[rgb(2,85,140)]"
+          className="w-full h-full object-cover border-t border-l border-r border-[rgb(2,85,140)]"
         />
         
         {/* Overlay gradiente */}
