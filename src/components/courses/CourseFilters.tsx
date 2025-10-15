@@ -48,11 +48,11 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
   };
 
   return (
-    <div className="bg-gradient-to-b from-cyan-50 to-blue-50 p-6 rounded-lg">
+    <div style={{ backgroundColor: '#E8FCFF' }} className="p-6 rounded-lg">
       <div className="space-y-6">
         {/* Modalidade */}
         <div>
-          <h3 className="text-lg font-semibold text-teal-700 mb-4">MODALIDADE</h3>
+          <h3 className="text-lg font-semibold mb-4" style={{ color: '#02558C' }}>MODALIDADE</h3>
           <div className="space-y-3">
             {modalityOptions.map((option) => (
               <label key={option.value} className="flex items-center cursor-pointer group">
@@ -63,11 +63,17 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
                     onChange={() => handleModalityChange(option.value)}
                     className="peer sr-only"
                   />
-                  <div className="w-5 h-5 border-2 border-teal-600 rounded-full flex items-center justify-center peer-checked:border-teal-600 peer-checked:bg-white transition-all">
-                    <div className="w-2.5 h-2.5 rounded-full bg-teal-600 scale-0 peer-checked:scale-100 transition-transform"></div>
+                  <div
+                    className="w-5 h-5 border-2 rounded-full flex items-center justify-center peer-checked:bg-white transition-all"
+                    style={{ borderColor: '#02558C' }}
+                  >
+                    <div
+                      className="w-2.5 h-2.5 rounded-full scale-0 peer-checked:scale-100 transition-transform"
+                      style={{ backgroundColor: '#02558C' }}
+                    ></div>
                   </div>
                 </div>
-                <span className="ml-3 text-teal-700 group-hover:text-teal-800 transition-colors">{option.label}</span>
+                <span className="ml-3 transition-opacity group-hover:opacity-80" style={{ color: '#02558C' }}>{option.label}</span>
               </label>
             ))}
           </div>
@@ -75,7 +81,7 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
 
         {/* Áreas */}
         <div>
-          <h3 className="text-lg font-semibold text-teal-700 mb-4">ÁREAS</h3>
+          <h3 className="text-lg font-semibold mb-4" style={{ color: '#02558C' }}>ÁREAS</h3>
           <div className="space-y-3">
             {areaOptions.map((option) => (
               <label key={option.value} className="flex items-center cursor-pointer group">
@@ -86,11 +92,17 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
                     onChange={() => handleAreaChange(option.value)}
                     className="peer sr-only"
                   />
-                  <div className="w-5 h-5 border-2 border-teal-600 rounded-full flex items-center justify-center peer-checked:border-teal-600 peer-checked:bg-white transition-all">
-                    <div className="w-2.5 h-2.5 rounded-full bg-teal-600 scale-0 peer-checked:scale-100 transition-transform"></div>
+                  <div
+                    className="w-5 h-5 border-2 rounded-full flex items-center justify-center peer-checked:bg-white transition-all"
+                    style={{ borderColor: '#02558C' }}
+                  >
+                    <div
+                      className="w-2.5 h-2.5 rounded-full scale-0 peer-checked:scale-100 transition-transform"
+                      style={{ backgroundColor: '#02558C' }}
+                    ></div>
                   </div>
                 </div>
-                <span className="ml-3 text-teal-700 group-hover:text-teal-800 transition-colors">{option.label}</span>
+                <span className="ml-3 transition-opacity group-hover:opacity-80" style={{ color: '#02558C' }}>{option.label}</span>
               </label>
             ))}
           </div>
