@@ -123,59 +123,36 @@ export const HomePage: React.FC = () => {
               ))
             ) : featuredCourses.length > 0 ? (
               featuredCourses.map((course) => (
-                <div key={course.id} className="bg-blue-800 rounded-tr-[2rem] rounded-bl-[2rem] overflow-visible shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex flex-col border-t-2 border-l-2 border-r-2 border-[rgb(2,85,140)] relative">
-                  <div className="relative h-48 overflow-hidden rounded-tr-[2rem]">
-                    <img
-                      src={course.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=400'}
-                      alt={course.title}
-                      className="w-full h-full object-cover rounded-tr-[2rem]"
+                <div key={course.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative">
+                    <img 
+                      src={course.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=400'} 
+                      alt={course.title} 
+                      className="w-full h-48 object-cover" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  </div>
-
-                  {/* Faixa da área com triângulo */}
-                  <div className="relative" style={{ marginTop: '-1.5rem', zIndex: 10 }}>
-                    {/* Triângulo esquerdo */}
-                    <div
-                      className="absolute left-0 top-0 w-0 h-0"
-                      style={{
-                        borderTop: '3rem solid transparent',
-                        borderRight: '1.5rem solid #22D3EE',
-                      }}
-                    ></div>
-
-                    {/* Faixa principal */}
-                    <div
-                      className="px-6 py-3 flex items-center justify-between relative"
-                      style={{
-                        backgroundColor: '#22D3EE',
-                        marginLeft: '1.5rem',
-                        paddingRight: '2rem'
-                      }}
-                    >
-                      <span className="font-bold text-sm uppercase tracking-wide" style={{ color: '#02558C' }}>
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-black bg-opacity-70 text-white text-sm rounded capitalize">
                         {course.area}
                       </span>
-                      <span className="text-xs font-medium uppercase" style={{ color: '#02558C' }}>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded uppercase">
                         {course.modality}
                       </span>
                     </div>
                   </div>
-
-                  <div className="text-white px-6 py-6 flex-1 flex flex-col" style={{ backgroundColor: '#02558C' }}>
-                    <h3 className="text-xl font-bold mb-2 leading-tight line-clamp-2">{course.title}</h3>
-                    <p className="text-white/80 text-sm mb-4 line-clamp-3 flex-1">
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{course.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                       {course.short_description}
                     </p>
-                    <div className="flex justify-end">
-                      <a
-                        href={`/course/${course.id}`}
-                        className="inline-flex items-center text-cyan-400 hover:text-white font-medium text-sm transition-colors duration-200 group"
-                      >
-                        Saiba mais
-                        <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-200" />
-                      </a>
-                    </div>
+                    <a
+                      href={`/course/${course.id}`}
+                      className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                      Saiba mais
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </a>
                   </div>
                 </div>
               ))
