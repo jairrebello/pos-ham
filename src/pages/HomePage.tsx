@@ -40,7 +40,7 @@ export const HomePage: React.FC = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+      <section className="relative text-white" style={{ background: `linear-gradient(to right, #02558C, #024a7a)` }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -240,7 +240,10 @@ export const HomePage: React.FC = () => {
           <div className="text-center">
             <a
               href="/cursos"
-              className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              style={{ backgroundColor: '#02558C' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#024a7a'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#02558C'}
             >
               Ver Todos os Cursos
               <ArrowRight className="ml-2 h-5 w-5" />

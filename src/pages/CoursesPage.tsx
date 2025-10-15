@@ -87,7 +87,7 @@ export const CoursesPage: React.FC = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+      <section className="text-white py-16" style={{ background: `linear-gradient(to right, #02558C, #024a7a)` }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Cursos de Pós-graduação</h1>

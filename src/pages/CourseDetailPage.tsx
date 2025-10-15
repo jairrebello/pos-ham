@@ -368,7 +368,7 @@ export const CourseDetailPage: React.FC = () => {
             {/* Local */}
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-bold mb-4 flex items-center">
-                <MapPin className="w-5 h-5 mr-3 text-blue-600" />
+                <MapPin className="w-5 h-5 mr-3" style={{ color: '#02558C' }} />
                 Local
               </h3>
               <p className="text-sm text-gray-600">{course.location}</p>

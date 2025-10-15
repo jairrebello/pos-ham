@@ -68,7 +68,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       </div>
 
       {/* Seção principal azul */}
-      <div className="bg-blue-800 text-white px-6 py-6 flex-1 flex flex-col">
+      <div className="text-white px-6 py-6 flex-1 flex flex-col" style={{ backgroundColor: '#02558C' }}>
         <h3 className="text-xl font-bold mb-4 leading-tight line-clamp-3">
           {course.title}
         </h3>
