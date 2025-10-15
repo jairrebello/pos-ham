@@ -9,6 +9,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null);
+  const [openNestedSubmenu, setOpenNestedSubmenu] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -193,7 +194,10 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                   {hasSubmenu && isOpen && (
                     <div
                       className="absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-2 z-50 animate-fade-in"
-                      onMouseLeave={() => setOpenDropdown(null)}
+                      onMouseLeave={() => {
+                        setOpenDropdown(null);
+                        setOpenNestedSubmenu(null);
+                      }}
                     >
                       {item.id === 'hospital' && (
                         <div className="px-4 py-2 border-b">
@@ -210,31 +214,46 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                         </div>
                       )}
                       {item.submenu?.map((subitem, idx) => (
-                        <div key={idx}>
-                          <a
-                            href={subitem.href}
-                            onClick={(e) => {
-                              if (subitem.internal) {
-                                e.preventDefault();
-                                handleLinkClick(subitem.href, true);
-                              }
-                            }}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#02558C] transition-colors"
-                          >
-                            {subitem.label}
-                          </a>
-                          {subitem.submenu && (
-                            <div className="pl-4 bg-gray-50">
-                              {subitem.submenu.map((nestedItem, nestedIdx) => (
-                                <a
-                                  key={nestedIdx}
-                                  href={nestedItem.href}
-                                  className="block px-4 py-1.5 text-xs text-gray-600 hover:text-[#02558C] transition-colors"
+                        <div key={idx} className="relative">
+                          {subitem.submenu ? (
+                            <>
+                              <button
+                                onMouseEnter={() => setOpenNestedSubmenu(`${item.id}-${idx}`)}
+                                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#02558C] transition-colors flex items-center justify-between"
+                              >
+                                {subitem.label.replace(' →', '')}
+                                <span className="text-gray-400">›</span>
+                              </button>
+                              {openNestedSubmenu === `${item.id}-${idx}` && (
+                                <div
+                                  className="absolute left-full top-0 ml-0 w-64 bg-white rounded-md shadow-lg py-2 z-50 animate-fade-in"
+                                  onMouseLeave={() => setOpenNestedSubmenu(null)}
                                 >
-                                  {nestedItem.label}
-                                </a>
-                              ))}
-                            </div>
+                                  {subitem.submenu.map((nestedItem, nestedIdx) => (
+                                    <a
+                                      key={nestedIdx}
+                                      href={nestedItem.href}
+                                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#02558C] transition-colors"
+                                    >
+                                      {nestedItem.label}
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <a
+                              href={subitem.href}
+                              onClick={(e) => {
+                                if (subitem.internal) {
+                                  e.preventDefault();
+                                  handleLinkClick(subitem.href, true);
+                                }
+                              }}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#02558C] transition-colors"
+                            >
+                              {subitem.label}
+                            </a>
                           )}
                         </div>
                       ))}
