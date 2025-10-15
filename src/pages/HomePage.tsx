@@ -40,41 +40,25 @@ export const HomePage: React.FC = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative text-white" style={{ background: `linear-gradient(to right, #02558C, #024a7a)` }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                Transforme sua carreira com nossos cursos de 
-                <span className="text-blue-200"> pós-graduação</span>
-              </h1>
-              <p className="text-xl mb-8 text-blue-100">
-                Para você que já possui uma graduação, o UNIAENE oferece diversos cursos de especialização 
-                para impulsionar sua carreira profissional.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="/courses"
-                  className="inline-flex items-center bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-                >
-                  Ver Cursos
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-                <a
-                  href="/about"
-                  className="inline-flex items-center border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors"
-                >
-                  Sobre Nós
-                </a>
-              </div>
-            </div>
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Estudantes"
-                className="rounded-lg shadow-2xl"
-              />
-            </div>
+      <section className="relative">
+        {/* Banner Image */}
+        <div className="w-full">
+          <img
+            src="/image.png"
+            alt="Pós-graduação Hospital Adventista Manaus"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
+        {/* Text Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#02558C' }}>
+              Cursos de Pós-graduação
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
+              Para você que já possui uma graduação, o Hospital Adventista Manaus, oferece
+            </p>
           </div>
         </div>
       </section>
