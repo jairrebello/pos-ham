@@ -15,13 +15,13 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   };
 
   const areaColors = {
-    educacao: 'bg-green-400',
-    gestao: 'bg-purple-400',
+    educacao: 'bg-cyan-400',
+    gestao: 'bg-cyan-400',
     saude: 'bg-cyan-400',
-    psicologia: 'bg-pink-400',
-    tecnologia: 'bg-blue-400',
-    direito: 'bg-orange-400',
-    engenharia: 'bg-red-400'
+    psicologia: 'bg-cyan-400',
+    tecnologia: 'bg-cyan-400',
+    direito: 'bg-cyan-400',
+    engenharia: 'bg-cyan-400'
   };
 
   const getAreaColor = (area: string) => {
@@ -39,7 +39,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   };
 
   return (
-    <div className="bg-blue-900 rounded-tr-2xl rounded-bl-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
+    <div className="bg-blue-800 rounded-tr-2xl rounded-bl-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
       {/* Imagem do curso */}
       <div className="relative h-48 overflow-hidden">
         <img
@@ -68,7 +68,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       </div>
 
       {/* Seção principal azul */}
-      <div className="bg-blue-900 text-white px-6 py-6 flex-1 flex flex-col">
+      <div className="bg-blue-800 text-white px-6 py-6 flex-1 flex flex-col">
         <h3 className="text-xl font-bold mb-4 leading-tight line-clamp-3">
           {course.title}
         </h3>
@@ -76,24 +76,24 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         {/* Informações do curso */}
         <div className="space-y-2 mb-6 flex-1">
           {course.start_date && (
-            <div className="flex items-center text-blue-200 text-sm">
+            <div className="flex items-center text-blue-300 text-sm">
               <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
               <span>Início: {formatStartDate(course.start_date)}</span>
             </div>
           )}
           
-          <div className="flex items-center text-blue-200 text-sm">
+          <div className="flex items-center text-blue-300 text-sm">
             <Clock className="h-4 w-4 mr-2 flex-shrink-0" />
             <span>{course.duration_hours}h de carga horária</span>
           </div>
           
-          <div className="flex items-center text-blue-200 text-sm">
+          <div className="flex items-center text-blue-300 text-sm">
             <Users className="h-4 w-4 mr-2 flex-shrink-0" />
             <span>Até {course.max_students} alunos</span>
           </div>
           
           {course.location && (
-            <div className="flex items-center text-blue-200 text-sm">
+            <div className="flex items-center text-blue-300 text-sm">
               <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
               <span>{course.location}</span>
             </div>
@@ -104,7 +104,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         <div className="flex justify-end mt-auto">
           <a
             href={`/curso/${course.slug}`}
-            className="inline-flex items-center text-cyan-300 hover:text-white font-medium text-sm transition-colors duration-200 group"
+            className="inline-flex items-center text-cyan-400 hover:text-white font-medium text-sm transition-colors duration-200 group"
           >
             Saiba mais
             <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-200" />
