@@ -219,7 +219,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                             <>
                               <button
                                 onMouseEnter={() => setOpenNestedSubmenu(`${item.id}-${idx}`)}
-                                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#02558C] transition-colors flex items-center justify-between"
+                                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[rgb(2,85,140)] hover:text-white transition-colors flex items-center justify-between"
                               >
                                 {subitem.label.replace(' →', '')}
                                 <span className="text-gray-400">›</span>
@@ -233,7 +233,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                                     <a
                                       key={nestedIdx}
                                       href={nestedItem.href}
-                                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#02558C] transition-colors"
+                                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[rgb(2,85,140)] hover:text-white transition-colors"
                                     >
                                       {nestedItem.label}
                                     </a>
@@ -250,7 +250,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                                   handleLinkClick(subitem.href, true);
                                 }
                               }}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#02558C] transition-colors"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[rgb(2,85,140)] hover:text-white transition-colors"
                             >
                               {subitem.label}
                             </a>
