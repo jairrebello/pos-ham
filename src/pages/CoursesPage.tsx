@@ -89,7 +89,7 @@ export const CoursesPage: React.FC = () => {
       {/* Hero Section */}
       <section className="relative">
         {/* Banner Image */}
-        <div className="w-full max-h-[400px] overflow-hidden">
+        <div className="w-full overflow-hidden">
           <img
             src="/image.png"
             alt="Pós-graduação Hospital Adventista Manaus"
