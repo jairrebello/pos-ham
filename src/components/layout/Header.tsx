@@ -199,20 +199,6 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                         setOpenNestedSubmenu(null);
                       }}
                     >
-                      {item.id === 'hospital' && (
-                        <div className="px-4 py-2 border-b">
-                          <div className="relative">
-                            <input
-                              type="text"
-                              placeholder="O que você procura?"
-                              value={searchTerm}
-                              onChange={(e) => setSearchTerm(e.target.value)}
-                              className="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#02558C]"
-                            />
-                            <Search className="absolute left-2 top-2 h-4 w-4 text-gray-400" />
-                          </div>
-                        </div>
-                      )}
                       {item.submenu?.map((subitem, idx) => (
                         <div key={idx} className="relative">
                           {subitem.submenu ? (
