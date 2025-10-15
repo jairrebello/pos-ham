@@ -262,9 +262,10 @@ export const CourseDetailPage: React.FC = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`py-4 px-6 text-sm font-medium border-b-2 ${
                       activeTab === tab.id
-                        ? 'border-blue-500 text-blue-600'
+                        ? 'text-blue-600'
                         : 'border-transparent text-gray-500 hover:text-gray-700'
                     }`}
+                    style={activeTab === tab.id ? { borderBottomColor: '#02558C', color: '#02558C' } : {}}
                   >
                     {tab.label}
                   </button>
@@ -368,7 +369,7 @@ export const CourseDetailPage: React.FC = () => {
             {/* Local */}
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-bold mb-4 flex items-center">
-                <MapPin className="w-5 h-5 mr-3" style={{ color: '#02558C' }} />
+                <MapPin className="w-5 h-5 mr-3 text-blue-600" />
                 Local
               </h3>
               <p className="text-sm text-gray-600">{course.location}</p>
