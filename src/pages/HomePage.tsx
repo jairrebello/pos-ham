@@ -42,11 +42,11 @@ export const HomePage: React.FC = () => {
       {/* Hero Section */}
       <section className="relative">
         {/* Banner Image */}
-        <div className="w-full">
+        <div className="w-full max-h-[400px] overflow-hidden">
           <img
             src="/image.png"
             alt="Pós-graduação Hospital Adventista Manaus"
-            className="w-full h-auto object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
 
