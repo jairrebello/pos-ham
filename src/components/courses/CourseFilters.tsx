@@ -48,21 +48,26 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
   };
 
   return (
-    <div className="bg-gray-50 p-6 rounded-lg">
+    <div className="bg-gradient-to-b from-cyan-50 to-blue-50 p-6 rounded-lg">
       <div className="space-y-6">
         {/* Modalidade */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">MODALIDADE</h3>
+          <h3 className="text-lg font-semibold text-teal-700 mb-4">MODALIDADE</h3>
           <div className="space-y-3">
             {modalityOptions.map((option) => (
-              <label key={option.value} className="flex items-center">
-                <input
-                  type="checkbox"
-                  checked={filters.modality.includes(option.value)}
-                  onChange={() => handleModalityChange(option.value)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <span className="ml-3 text-gray-700">{option.label}</span>
+              <label key={option.value} className="flex items-center cursor-pointer group">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    checked={filters.modality.includes(option.value)}
+                    onChange={() => handleModalityChange(option.value)}
+                    className="peer sr-only"
+                  />
+                  <div className="w-5 h-5 border-2 border-teal-600 rounded-full flex items-center justify-center peer-checked:border-teal-600 peer-checked:bg-white transition-all">
+                    <div className="w-2.5 h-2.5 rounded-full bg-teal-600 scale-0 peer-checked:scale-100 transition-transform"></div>
+                  </div>
+                </div>
+                <span className="ml-3 text-teal-700 group-hover:text-teal-800 transition-colors">{option.label}</span>
               </label>
             ))}
           </div>
@@ -70,17 +75,22 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
 
         {/* Áreas */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">ÁREAS</h3>
+          <h3 className="text-lg font-semibold text-teal-700 mb-4">ÁREAS</h3>
           <div className="space-y-3">
             {areaOptions.map((option) => (
-              <label key={option.value} className="flex items-center">
-                <input
-                  type="checkbox"
-                  checked={filters.area.includes(option.value)}
-                  onChange={() => handleAreaChange(option.value)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <span className="ml-3 text-gray-700">{option.label}</span>
+              <label key={option.value} className="flex items-center cursor-pointer group">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    checked={filters.area.includes(option.value)}
+                    onChange={() => handleAreaChange(option.value)}
+                    className="peer sr-only"
+                  />
+                  <div className="w-5 h-5 border-2 border-teal-600 rounded-full flex items-center justify-center peer-checked:border-teal-600 peer-checked:bg-white transition-all">
+                    <div className="w-2.5 h-2.5 rounded-full bg-teal-600 scale-0 peer-checked:scale-100 transition-transform"></div>
+                  </div>
+                </div>
+                <span className="ml-3 text-teal-700 group-hover:text-teal-800 transition-colors">{option.label}</span>
               </label>
             ))}
           </div>
