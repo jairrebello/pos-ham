@@ -36,10 +36,10 @@ export const LoginPage: React.FC = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-blue-600 rounded flex items-center justify-center">
+            <div className="w-10 h-10 rounded flex items-center justify-center" style={{ backgroundColor: '#02558C' }}>
               <span className="text-white font-bold text-xl">U</span>
             </div>
-            <span className="text-2xl font-bold text-blue-900">UNIAENE</span>
+            <span className="text-2xl font-bold" style={{ color: '#02558C' }}>UNIAENE</span>
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">

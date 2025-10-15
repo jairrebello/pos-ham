@@ -46,7 +46,10 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
               <a
                 key={index}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                className="text-gray-700 font-medium transition-colors duration-200"
+                style={{ '--hover-color': '#02558C' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#02558C'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#6b7280'}
               >
                 {item.label}
               </a>
