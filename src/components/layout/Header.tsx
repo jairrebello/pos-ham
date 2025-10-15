@@ -33,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
           <div className="flex-shrink-0 flex items-center">
             <a href="/">
               <img
-                src="https://ham.org.br/wp-content/uploads/2025/03/marca-horizontal-hospital-manaus-positivo-colorido.png"
+                src="/logo-ham copy.png"
                 alt="Hospital Adventista Manaus"
                 className="h-12 w-auto"
               />
