@@ -18,11 +18,13 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
   ];
 
   const areaOptions = [
-    { value: 'educacao', label: 'Educação' },
+    { value: 'todas', label: 'Todas' },
+    { value: 'enfermagem', label: 'Enfermagem' },
+    { value: 'farmacia', label: 'Farmácia' },
+    { value: 'fisioterapia', label: 'Fisioterapia' },
     { value: 'gestao', label: 'Gestão' },
-    { value: 'saude', label: 'Saúde' },
-    { value: 'psicologia', label: 'Psicologia' },
-    { value: 'tecnologia', label: 'Tecnologia' }
+    { value: 'nutricao', label: 'Nutrição' },
+    { value: 'oncologia', label: 'Oncologia' }
   ];
 
   const handleModalityChange = (modality: string) => {
@@ -48,39 +50,44 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
   };
 
   return (
-    <div className="bg-gray-50 p-6 rounded-lg">
+    <div className="bg-cyan-50 p-6 rounded-lg">
       <div className="space-y-6">
-        {/* Modalidade */}
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">MODALIDADE</h3>
-          <div className="space-y-3">
-            {modalityOptions.map((option) => (
-              <label key={option.value} className="flex items-center">
-                <input
-                  type="checkbox"
-                  checked={filters.modality.includes(option.value)}
-                  onChange={() => handleModalityChange(option.value)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <span className="ml-3 text-gray-700">{option.label}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-
         {/* Áreas */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">ÁREAS</h3>
+          <h3 className="text-lg font-bold text-teal-700 mb-4">Áreas</h3>
           <div className="space-y-3">
             {areaOptions.map((option) => (
-              <label key={option.value} className="flex items-center">
-                <input
-                  type="checkbox"
-                  checked={filters.area.includes(option.value)}
-                  onChange={() => handleAreaChange(option.value)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <span className="ml-3 text-gray-700">{option.label}</span>
+              <label key={option.value} className="flex items-center cursor-pointer group">
+                <div className="relative">
+                  <input
+                    type="radio"
+                    name="area"
+                    checked={filters.area.includes(option.value)}
+                    onChange={() => {
+                      onFiltersChange({
+                        ...filters,
+                        area: [option.value]
+                      });
+                    }}
+                    className="sr-only"
+                  />
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                    filters.area.includes(option.value)
+                      ? 'border-teal-500 bg-white'
+                      : 'border-teal-400 bg-white'
+                  }`}>
+                    {filters.area.includes(option.value) && (
+                      <div className="w-3 h-3 rounded-full bg-teal-500"></div>
+                    )}
+                  </div>
+                </div>
+                <span className={`ml-3 text-base transition-colors ${
+                  filters.area.includes(option.value)
+                    ? 'text-teal-700 font-medium'
+                    : 'text-teal-600'
+                }`}>
+                  {option.label}
+                </span>
               </label>
             ))}
           </div>
