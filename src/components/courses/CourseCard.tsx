@@ -39,13 +39,13 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   };
 
   return (
-    <div className="bg-blue-800 rounded-tr-[2rem] rounded-bl-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
+    <div className="bg-blue-800 rounded-tr-[2rem] rounded-bl-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col border-t-2 border-l-2 border-r-2 border-[rgb(2,85,140)]">
       {/* Imagem do curso */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-48 overflow-hidden rounded-tr-[2rem]">
         <img
           src={course.image_url || 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=400'}
           alt={course.title}
-          className="w-full h-full object-cover border-t border-l border-r border-[rgb(2,85,140)]"
+          className="w-full h-full object-cover rounded-tr-[2rem]"
         />
         
         {/* Overlay gradiente */}
