@@ -44,7 +44,7 @@ export const HomePage: React.FC = () => {
         {/* Banner Image */}
         <div className="w-full max-h-[400px] overflow-hidden">
           <img
-            src="/BANNER PRINCIPAL.jpeg"
+            src="/BANNER PRINCIPAL_editaado.jpg"
             alt="Pós-graduação Hospital Adventista Manaus"
             className="w-full h-full object-cover"
           />
