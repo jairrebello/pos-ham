@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
               <a href="/admin">
-                <img src="/logo-ham.png" alt="Hospital Adventista Manaus" className="h-12 w-auto" />
+                <img src="/logo-ham.png" alt="Hospital Adventista Manaus" className="w-auto" style={{ maxWidth: '200px', height: 'auto' }} />
               </a>
             </div>
             <nav className="flex items-center space-x-6">
@@ -161,8 +161,8 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
                 src="/logo-ham.png"
                 srcSet="/logo-ham.png 1x, /logo-ham.png 2x"
                 alt="Hospital Adventista de Manaus"
-                className="h-16 w-auto"
-                style={{ maxHeight: '64px' }}
+                className="w-auto"
+                style={{ maxWidth: '200px', height: 'auto' }}
               />
             </a>
           </div>
