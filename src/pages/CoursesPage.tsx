@@ -91,7 +91,7 @@ export const CoursesPage: React.FC = () => {
         {/* Banner Image */}
         <div className="w-full overflow-hidden">
           <img
-            src="/image.png"
+            src="/BANNER PRINCIPAL.jpeg"
             alt="Pós-graduação Hospital Adventista Manaus"
             className="w-full h-full object-cover"
           />
