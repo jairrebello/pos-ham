@@ -98,7 +98,7 @@ export const CoursesPage: React.FC = () => {
         </div>
 
         {/* Text Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ backgroundColor: 'rgb(232, 252, 255)' }}>
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-4" style={{ color: '#02558C' }}>
               Cursos de Pós-graduação
