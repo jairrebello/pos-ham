@@ -134,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
   if (isAdmin) {
     return (
       <header className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
               <a href="/admin">
@@ -153,7 +153,7 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
 
   return (
     <header className="bg-white shadow-md relative z-50" ref={dropdownRef}>
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center" style={{ height: '87px' }}>
           <div className="flex-shrink-0" style={{ margin: '10px 0 0 0' }}>
             <a href="https://ham.org.br/">
