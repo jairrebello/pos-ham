@@ -11,6 +11,7 @@ export default function ContactForm() {
     course: '',
     interest: 'conhecer'
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     fetchCourses();
@@ -30,17 +31,63 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      course: '',
-      interest: 'conhecer'
-    });
+    if (isSubmitting) return;
 
-    alert('Mensagem enviada com sucesso!');
+    setIsSubmitting(true);
+
+    try {
+      // Save to database
+      const { data: submission, error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          course_id: formData.course,
+          interest: formData.interest,
+        })
+        .select()
+        .single();
+
+      if (dbError) throw dbError;
+
+      // Send email via edge function
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+      const response = await fetch(
+        `${supabaseUrl}/functions/v1/send-contact-email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${supabaseAnonKey}`,
+          },
+          body: JSON.stringify({ submissionId: submission.id }),
+        }
+      );
+
+      if (!response.ok) {
+        console.error('Failed to send email:', await response.text());
+      }
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        course: '',
+        interest: 'conhecer'
+      });
+
+      alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+    } catch (error: any) {
+      console.error('Error submitting form:', error);
+      alert('Erro ao enviar mensagem. Por favor, tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -130,10 +177,11 @@ export default function ContactForm() {
           <div className="flex justify-end pt-2">
             <button
               type="submit"
-              className="px-12 py-3 font-bold text-white rounded transition-all duration-200 hover:opacity-90"
+              disabled={isSubmitting}
+              className="px-12 py-3 font-bold text-white rounded transition-all duration-200 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ backgroundColor: '#02558C' }}
             >
-              ENVIAR
+              {isSubmitting ? 'ENVIANDO...' : 'ENVIAR'}
             </button>
           </div>
         </form>
