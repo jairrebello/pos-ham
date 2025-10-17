@@ -286,40 +286,55 @@ export const CourseDetailPage: React.FC = () => {
             <div className="grid grid-cols-12 gap-8">
               {/* Left Sidebar - Info Cards */}
               <div className="col-span-4 xl:col-span-3">
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {/* Modalidade */}
-                  <div className="bg-white p-5 rounded-lg shadow-md">
-                    <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
-                      <GraduationCap className="w-5 h-5 mr-2" />
-                      Modalidade
-                    </h3>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
-                    </p>
+                  <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                    <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                      <h3 className="text-lg font-bold text-white">
+                        Modalidade
+                      </h3>
+                    </div>
+                    <div className="py-4 px-6">
+                      <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                        Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
+                      </p>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        <strong>OBS.:</strong> Podendo haver até três aulas presenciais durante o curso.
+                      </p>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        Estágios presenciais.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Carga Horária */}
-                  <div className="bg-white p-5 rounded-lg shadow-md">
-                    <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
-                      <Clock className="w-5 h-5 mr-2" />
-                      Carga horária
-                    </h3>
-                    <p className="text-lg font-bold" style={{ color: '#02558C' }}>
-                      {course.duration_hours} horas
-                    </p>
+                  <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                    <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                      <h3 className="text-lg font-bold text-white">
+                        Carga horária
+                      </h3>
+                    </div>
+                    <div className="py-4 px-6">
+                      <p className="text-2xl font-bold" style={{ color: '#02558C' }}>
+                        {course.duration_hours} horas
+                      </p>
+                    </div>
                   </div>
 
                   {/* Vagas */}
-                  <div className="bg-white p-5 rounded-lg shadow-md">
-                    <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
-                      <Users className="w-5 h-5 mr-2" />
-                      Vagas
-                    </h3>
-                    <p className="text-xs text-gray-600">Mínimo: 20</p>
-                    <p className="text-xs text-gray-600">Máximo: {course.max_students}</p>
-                    <p className="text-xs font-semibold mt-2" style={{ color: '#21D3EE' }}>
-                      Vagas limitadas
-                    </p>
+                  <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                    <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                      <h3 className="text-lg font-bold text-white">
+                        Vagas
+                      </h3>
+                    </div>
+                    <div className="py-4 px-6">
+                      <p className="text-sm text-gray-700">Mínimo: 20</p>
+                      <p className="text-sm text-gray-700">Máximo: {course.max_students}</p>
+                      <p className="text-sm font-bold mt-2" style={{ color: '#21D3EE' }}>
+                        Vagas limitadas
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -372,37 +387,52 @@ export const CourseDetailPage: React.FC = () => {
             </div>
 
             {/* Info Cards Mobile */}
-            <div className="space-y-4">
-              <div className="bg-white p-5 rounded-lg shadow-md">
-                <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
-                  <GraduationCap className="w-5 h-5 mr-2" />
-                  Modalidade
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
-                </p>
+            <div className="space-y-6">
+              <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                  <h3 className="text-lg font-bold text-white">
+                    Modalidade
+                  </h3>
+                </div>
+                <div className="py-4 px-6">
+                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                    Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
+                  </p>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    <strong>OBS.:</strong> Podendo haver até três aulas presenciais durante o curso.
+                  </p>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    Estágios presenciais.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-md">
-                <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
-                  <Clock className="w-5 h-5 mr-2" />
-                  Carga horária
-                </h3>
-                <p className="text-lg font-bold" style={{ color: '#02558C' }}>
-                  {course.duration_hours} horas
-                </p>
+              <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                  <h3 className="text-lg font-bold text-white">
+                    Carga horária
+                  </h3>
+                </div>
+                <div className="py-4 px-6">
+                  <p className="text-2xl font-bold" style={{ color: '#02558C' }}>
+                    {course.duration_hours} horas
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-md">
-                <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
-                  <Users className="w-5 h-5 mr-2" />
-                  Vagas
-                </h3>
-                <p className="text-sm text-gray-600">Mínimo: 20</p>
-                <p className="text-sm text-gray-600">Máximo: {course.max_students}</p>
-                <p className="text-sm font-semibold mt-2" style={{ color: '#21D3EE' }}>
-                  Vagas limitadas
-                </p>
+              <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                  <h3 className="text-lg font-bold text-white">
+                    Vagas
+                  </h3>
+                </div>
+                <div className="py-4 px-6">
+                  <p className="text-sm text-gray-700">Mínimo: 20</p>
+                  <p className="text-sm text-gray-700">Máximo: {course.max_students}</p>
+                  <p className="text-sm font-bold mt-2" style={{ color: '#21D3EE' }}>
+                    Vagas limitadas
+                  </p>
+                </div>
               </div>
             </div>
           </div>
