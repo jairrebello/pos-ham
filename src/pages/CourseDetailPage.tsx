@@ -146,7 +146,7 @@ export const CourseDetailPage: React.FC = () => {
           <h2 className="text-xl font-bold mb-4" style={{ color: '#02558C' }}>Coordenação</h2>
           
           {/* Coordenação Geral */}
-          {(course?.content.coordination_general || course?.content.coordination_general_photo) && (
+          {course?.content.coordination_general && (
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação Geral</h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
@@ -159,19 +159,17 @@ export const CourseDetailPage: React.FC = () => {
                     />
                   </div>
                 )}
-                {course?.content.coordination_general && (
-                  <div className="flex-1">
-                    <p className="text-gray-700 leading-relaxed">
-                      {course.content.coordination_general}
-                    </p>
-                  </div>
-                )}
+                <div className="flex-1">
+                  <p className="text-gray-700 leading-relaxed">
+                    {course.content.coordination_general}
+                  </p>
+                </div>
               </div>
             </div>
           )}
 
           {/* Coordenação do Polo HAM */}
-          {(course?.content.coordination_ham_pole || course?.content.coordination_ham_pole_photo) && (
+          {course?.content.coordination_ham_pole && (
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação do Polo HAM</h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
@@ -184,19 +182,17 @@ export const CourseDetailPage: React.FC = () => {
                     />
                   </div>
                 )}
-                {course?.content.coordination_ham_pole && (
-                  <div className="flex-1">
-                    <p className="text-gray-700 leading-relaxed">
-                      {course.content.coordination_ham_pole}
-                    </p>
-                  </div>
-                )}
+                <div className="flex-1">
+                  <p className="text-gray-700 leading-relaxed">
+                    {course.content.coordination_ham_pole}
+                  </p>
+                </div>
               </div>
             </div>
           )}
 
           {/* Coordenação */}
-          {(course?.content.coordination || course?.content.coordination_photo) && (
+          {course?.content.coordination && (
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação do Curso</h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
@@ -209,21 +205,19 @@ export const CourseDetailPage: React.FC = () => {
                     />
                   </div>
                 )}
-                {course?.content.coordination && (
-                  <div className="flex-1">
-                    <p className="text-gray-700 leading-relaxed">
-                      {course.content.coordination}
-                    </p>
-                  </div>
-                )}
+                <div className="flex-1">
+                  <p className="text-gray-700 leading-relaxed">
+                    {course.content.coordination}
+                  </p>
+                </div>
               </div>
             </div>
           )}
 
           {/* Mensagem quando não há coordenação cadastrada */}
-          {!course?.content.coordination_general && !course?.content.coordination_general_photo &&
-           !course?.content.coordination_ham_pole && !course?.content.coordination_ham_pole_photo &&
-           !course?.content.coordination && !course?.content.coordination_photo && (
+          {!course?.content.coordination_general &&
+           !course?.content.coordination_ham_pole &&
+           !course?.content.coordination && (
             <p className="text-gray-500 italic">Informações de coordenação não disponíveis.</p>
           )}
         </div>
