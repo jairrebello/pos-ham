@@ -24,16 +24,17 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
-    description: '',
-    short_description: '',
     image_url: '',
     area: '',
     modality: 'online' as const,
+    modality_complement: '',
     duration_hours: 0,
+    min_students: 0,
     max_students: 0,
     start_date: '',
     location: '',
-    price: 0,
+    investment: '',
+    contact_us: '',
     status: 'draft' as const,
     content: {
       about: '',
@@ -90,29 +91,30 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
         setFormData({
           title: data.title,
           slug: data.slug || '',
-          description: data.description,
-          short_description: data.short_description,
           image_url: data.image_url || '',
           area: data.area,
           modality: data.modality,
+          modality_complement: data.modality_complement || '',
           duration_hours: data.duration_hours,
+          min_students: data.min_students || 0,
           max_students: data.max_students,
           start_date: data.start_date || '',
           location: data.location || '',
-          price: data.price,
+          investment: data.investment || '',
+          contact_us: data.contact_us || '',
           status: data.status,
           content: {
             about: data.content?.about || '',
             target_audience: data.content?.target_audience || '',
-            program: data.content?.program?.map((item: any) => 
+            program: data.content?.program?.map((item: any) =>
               typeof item === 'string' ? { name: item, hours: 0 } : item
             ) || [{ name: '', hours: 0 }],
             coordination_general: data.content?.coordination_general || '',
             coordination_general_photo: data.content?.coordination_general_photo || '',
             coordination: data.content?.coordination || '',
             coordination_photo: data.content?.coordination_photo || '',
-            requirements: Array.isArray(data.content?.requirements) 
-              ? data.content.requirements.join('\n') 
+            requirements: Array.isArray(data.content?.requirements)
+              ? data.content.requirements.join('\n')
               : data.content?.requirements || ''
           }
         });
@@ -217,16 +219,17 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
       const courseData = {
         title: formData.title.trim(),
         slug: slug,
-        description: formData.description.trim(),
-        short_description: formData.short_description.trim(),
         image_url: formData.image_url.trim(),
         area: formData.area,
         modality: formData.modality,
+        modality_complement: formData.modality_complement.trim(),
         duration_hours: Number(formData.duration_hours),
+        min_students: Number(formData.min_students),
         max_students: Number(formData.max_students),
         start_date: formData.start_date || null,
         location: formData.location.trim(),
-        price: Number(formData.price),
+        investment: formData.investment.trim(),
+        contact_us: formData.contact_us.trim(),
         status: formData.status,
         content: {
           about: formData.content.about.trim(),
@@ -347,29 +350,8 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
                 </p>
               </div>
 
-              <div className="md:col-span-2">
-                <TextArea
-                  label="Descrição Curta *"
-                  value={formData.short_description}
-                  onChange={(e) => handleInputChange('short_description', e.target.value)}
-                  placeholder="Breve descrição que aparecerá nos cards de curso"
-                  rows={2}
-                  required
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <TextArea
-                  label="Descrição Completa"
-                  value={formData.description}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
-                  placeholder="Descrição detalhada do curso"
-                  rows={4}
-                />
-              </div>
-
               <ImageUpload
-                label="URL da Imagem"
+                label="Imagem do Curso"
                 value={formData.image_url}
                 onChange={(url) => handleInputChange('image_url', url)}
               />
@@ -390,6 +372,16 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
                 options={modalityOptions}
                 required
               />
+
+              <div className="md:col-span-2">
+                <TextArea
+                  label="Complemento da Modalidade"
+                  value={formData.modality_complement}
+                  onChange={(e) => handleInputChange('modality_complement', e.target.value)}
+                  placeholder="Informações adicionais sobre a modalidade do curso"
+                  rows={3}
+                />
+              </div>
 
               <Select
                 label="Status *"
@@ -416,6 +408,15 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
               />
 
               <Input
+                label="Número Mínimo de Alunos"
+                type="number"
+                value={formData.min_students}
+                onChange={(e) => handleInputChange('min_students', e.target.value)}
+                placeholder="15"
+                min="0"
+              />
+
+              <Input
                 label="Número Máximo de Alunos"
                 type="number"
                 value={formData.max_students}
@@ -431,22 +432,35 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
                 onChange={(e) => handleInputChange('start_date', e.target.value)}
               />
 
-              <Input
-                label="Local"
-                value={formData.location}
-                onChange={(e) => handleInputChange('location', e.target.value)}
-                placeholder="Online, São Paulo - SP, etc."
-              />
+              <div className="md:col-span-2">
+                <TextArea
+                  label="Local"
+                  value={formData.location}
+                  onChange={(e) => handleInputChange('location', e.target.value)}
+                  placeholder="Informações sobre o local do curso (endereço completo, cidade, estado, etc.)"
+                  rows={3}
+                />
+              </div>
 
-              <Input
-                label="Preço (R$)"
-                type="number"
-                value={formData.price}
-                onChange={(e) => handleInputChange('price', e.target.value)}
-                placeholder="2400"
-                min="0"
-                step="0.01"
-              />
+              <div className="md:col-span-2">
+                <TextArea
+                  label="Investimento"
+                  value={formData.investment}
+                  onChange={(e) => handleInputChange('investment', e.target.value)}
+                  placeholder="Informações sobre o investimento do curso (valor, formas de pagamento, descontos, etc.)"
+                  rows={3}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <TextArea
+                  label="Fale Conosco"
+                  value={formData.contact_us}
+                  onChange={(e) => handleInputChange('contact_us', e.target.value)}
+                  placeholder="Informações de contato para dúvidas sobre o curso (telefone, email, WhatsApp, etc.)"
+                  rows={3}
+                />
+              </div>
             </div>
           </div>
 

@@ -2,16 +2,17 @@ export interface Course {
   id: string;
   slug: string;
   title: string;
-  description: string;
-  short_description: string;
   image_url: string;
   area: string;
   modality: 'presencial' | 'online' | 'ead' | 'hibrido';
+  modality_complement: string;
   duration_hours: number;
+  min_students: number;
   max_students: number;
   start_date: string;
   location: string;
-  price: number;
+  investment: string;
+  contact_us: string;
   status: 'active' | 'inactive' | 'draft';
   content: {
     about: string;
