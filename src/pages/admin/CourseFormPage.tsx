@@ -48,13 +48,12 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
   });
 
   const areaOptions = [
-    { value: 'educacao', label: 'Educação' },
+    { value: 'enfermagem', label: 'Enfermagem' },
+    { value: 'farmacia', label: 'Farmácia' },
+    { value: 'fisioterapia', label: 'Fisioterapia' },
     { value: 'gestao', label: 'Gestão' },
-    { value: 'saude', label: 'Saúde' },
-    { value: 'psicologia', label: 'Psicologia' },
-    { value: 'tecnologia', label: 'Tecnologia' },
-    { value: 'direito', label: 'Direito' },
-    { value: 'engenharia', label: 'Engenharia' }
+    { value: 'nutricao', label: 'Nutrição' },
+    { value: 'oncologia', label: 'Oncologia' }
   ];
 
   const modalityOptions = [
