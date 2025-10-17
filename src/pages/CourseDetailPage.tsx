@@ -169,14 +169,14 @@ export const CourseDetailPage: React.FC = () => {
           )}
 
           {/* Coordenação do Polo HAM */}
-          {course?.content.coordination_ham_pole && (
+          {course?.content.coordination_polo_ham && (
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Coordenação do Polo HAM</h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
-                {course?.content.coordination_ham_pole_photo && (
+                {course?.content.coordination_polo_ham_photo && (
                   <div className="flex-shrink-0">
                     <img
-                      src={course.content.coordination_ham_pole_photo}
+                      src={course.content.coordination_polo_ham_photo}
                       alt="Coordenador do Polo HAM"
                       className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
                     />
@@ -184,7 +184,7 @@ export const CourseDetailPage: React.FC = () => {
                 )}
                 <div className="flex-1">
                   <p className="text-gray-700 leading-relaxed">
-                    {course.content.coordination_ham_pole}
+                    {course.content.coordination_polo_ham}
                   </p>
                 </div>
               </div>
@@ -216,7 +216,7 @@ export const CourseDetailPage: React.FC = () => {
 
           {/* Mensagem quando não há coordenação cadastrada */}
           {!course?.content.coordination_general &&
-           !course?.content.coordination_ham_pole &&
+           !course?.content.coordination_polo_ham &&
            !course?.content.coordination && (
             <p className="text-gray-500 italic">Informações de coordenação não disponíveis.</p>
           )}
