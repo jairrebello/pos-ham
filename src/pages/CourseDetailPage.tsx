@@ -241,7 +241,7 @@ export const CourseDetailPage: React.FC = () => {
       {/* Title Bar */}
       <section className="py-6" style={{ backgroundColor: '#02558C' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-bold" style={{ color: '#21D3EE' }}>
+          <h1 className="text-3xl md:text-4xl font-bold text-center" style={{ color: '#21D3EE' }}>
             {course.title}
           </h1>
         </div>
