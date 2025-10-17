@@ -3,6 +3,7 @@ import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
 import { CourseCard } from '../components/courses/CourseCard';
 import { CourseFiltersComponent } from '../components/courses/CourseFilters';
+import ContactForm from '../components/forms/ContactForm';
 import { supabase } from '../lib/supabase';
 import type { Course, CourseFilters } from '../types/course';
 
@@ -143,6 +144,8 @@ export const CoursesPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ContactForm />
 
       <Footer />
     </div>

@@ -1,0 +1,143 @@
+import { useState, useEffect } from 'react';
+import { supabase } from '../../lib/supabase';
+import type { Course } from '../../types/course';
+
+export default function ContactForm() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    course: '',
+    interest: 'conhecer'
+  });
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  const fetchCourses = async () => {
+    const { data } = await supabase
+      .from('courses')
+      .select('id, title')
+      .eq('is_published', true)
+      .order('title');
+
+    if (data) {
+      setCourses(data);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      course: '',
+      interest: 'conhecer'
+    });
+
+    alert('Mensagem enviada com sucesso!');
+  };
+
+  return (
+    <section className="py-16" style={{ backgroundColor: '#21D3EE' }}>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Nome"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+            className="w-full px-6 py-4 rounded-lg border-0 focus:ring-2 focus:ring-blue-600 text-gray-700 placeholder-gray-400"
+          />
+
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            required
+            className="w-full px-6 py-4 rounded-lg border-0 focus:ring-2 focus:ring-blue-600 text-gray-700 placeholder-gray-400"
+          />
+
+          <input
+            type="tel"
+            placeholder="Celular"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            required
+            className="w-full px-6 py-4 rounded-lg border-0 focus:ring-2 focus:ring-blue-600 text-gray-700 placeholder-gray-400"
+          />
+
+          <select
+            value={formData.course}
+            onChange={(e) => setFormData({ ...formData, course: e.target.value })}
+            required
+            className="w-full px-6 py-4 rounded-lg border-0 focus:ring-2 focus:ring-blue-600 text-gray-700 appearance-none"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2302558C' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E")`,
+              backgroundPosition: 'right 1rem center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '1.5em 1.5em',
+              paddingRight: '3rem'
+            }}
+          >
+            <option value="">Qual curso você deseja fazer?</option>
+            {courses.map((course) => (
+              <option key={course.id} value={course.id}>
+                {course.title}
+              </option>
+            ))}
+          </select>
+
+          <div className="flex flex-wrap gap-4">
+            <label className="flex items-center bg-white px-8 py-4 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors flex-1 sm:flex-initial">
+              <input
+                type="radio"
+                name="interest"
+                value="conhecer"
+                checked={formData.interest === 'conhecer'}
+                onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                className="mr-3 w-5 h-5 text-blue-600"
+                style={{ accentColor: '#02558C' }}
+              />
+              <span className="font-medium" style={{ color: '#02558C' }}>
+                Fale conosco
+              </span>
+            </label>
+
+            <label className="flex items-center bg-white px-8 py-4 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors flex-1 sm:flex-initial">
+              <input
+                type="radio"
+                name="interest"
+                value="matricular"
+                checked={formData.interest === 'matricular'}
+                onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                className="mr-3 w-5 h-5 text-blue-600"
+                style={{ accentColor: '#02558C' }}
+              />
+              <span className="font-medium" style={{ color: '#02558C' }}>
+                Matricule-se
+              </span>
+            </label>
+          </div>
+
+          <div className="flex justify-end pt-2">
+            <button
+              type="submit"
+              className="px-12 py-3 font-bold text-white rounded transition-all duration-200 hover:opacity-90"
+              style={{ backgroundColor: '#02558C' }}
+            >
+              ENVIAR
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}

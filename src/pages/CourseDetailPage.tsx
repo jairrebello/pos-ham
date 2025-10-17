@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
+import ContactForm from '../components/forms/ContactForm';
 import { Clock, Users, MapPin, Calendar, GraduationCap, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { supabase } from '../lib/supabase';
@@ -437,6 +438,8 @@ export const CourseDetailPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ContactForm />
 
       <Footer />
     </div>
