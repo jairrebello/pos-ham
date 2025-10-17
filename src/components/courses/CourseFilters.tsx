@@ -18,11 +18,13 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
   ];
 
   const areaOptions = [
-    { value: 'educacao', label: 'Educação' },
+    { value: 'todas', label: 'Todas' },
+    { value: 'enfermagem', label: 'Enfermagem' },
+    { value: 'farmacia', label: 'Farmácia' },
+    { value: 'fisioterapia', label: 'Fisioterapia' },
     { value: 'gestao', label: 'Gestão' },
-    { value: 'saude', label: 'Saúde' },
-    { value: 'psicologia', label: 'Psicologia' },
-    { value: 'tecnologia', label: 'Tecnologia' }
+    { value: 'nutricao', label: 'Nutrição' },
+    { value: 'oncologia', label: 'Oncologia' }
   ];
 
   const handleModalityChange = (modality: string) => {
@@ -37,10 +39,18 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
   };
 
   const handleAreaChange = (area: string) => {
+    if (area === 'todas') {
+      onFiltersChange({
+        ...filters,
+        area: []
+      });
+      return;
+    }
+
     const newAreas = filters.area.includes(area)
       ? filters.area.filter(a => a !== area)
       : [...filters.area, area];
-    
+
     onFiltersChange({
       ...filters,
       area: newAreas
@@ -90,7 +100,7 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
                 <div className="relative">
                   <input
                     type="checkbox"
-                    checked={filters.area.includes(option.value)}
+                    checked={option.value === 'todas' ? filters.area.length === 0 : filters.area.includes(option.value)}
                     onChange={() => handleAreaChange(option.value)}
                     className="peer sr-only"
                   />
@@ -98,7 +108,7 @@ export const CourseFiltersComponent: React.FC<CourseFiltersProps> = ({
                     className="w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all"
                     style={{
                       borderColor: '#02558C',
-                      backgroundColor: filters.area.includes(option.value) ? '#02558C' : 'transparent'
+                      backgroundColor: (option.value === 'todas' ? filters.area.length === 0 : filters.area.includes(option.value)) ? '#02558C' : 'transparent'
                     }}
                   >
                     <div

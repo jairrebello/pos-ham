@@ -59,9 +59,8 @@ export const CoursesPage: React.FC = () => {
 
     // Filter by search
     if (filters.search) {
-      filtered = filtered.filter(course => 
-        course.title.toLowerCase().includes(filters.search.toLowerCase()) ||
-        course.description.toLowerCase().includes(filters.search.toLowerCase())
+      filtered = filtered.filter(course =>
+        course.title.toLowerCase().includes(filters.search.toLowerCase())
       );
     }
 
