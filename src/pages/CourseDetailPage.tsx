@@ -4,6 +4,7 @@ import { Footer } from '../components/layout/Footer';
 import ContactForm from '../components/forms/ContactForm';
 import { Clock, Users, MapPin, Calendar, GraduationCap, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { MetaTags } from '../components/ui/MetaTags';
 import { supabase } from '../lib/supabase';
 import type { Course } from '../types/course';
 
@@ -32,11 +33,6 @@ export const CourseDetailPage: React.FC = () => {
     }
   }, [courseId]);
 
-  useEffect(() => {
-    if (course) {
-      document.title = `${course.title} - Pós Graduação - Hospital Adventista de Manaus`;
-    }
-  }, [course]);
 
   const loadCourse = async () => {
     try {
@@ -253,6 +249,14 @@ export const CourseDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {course && (
+        <MetaTags
+          title={`${course.title} - Pós Graduação HAM`}
+          description={course.content.about?.substring(0, 160) || `Curso de ${course.title} - Hospital Adventista de Manaus`}
+          image={course.image_url}
+          url={window.location.href}
+        />
+      )}
       <Header />
 
       {/* Hero Section with Image */}

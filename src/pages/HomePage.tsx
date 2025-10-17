@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
+import { MetaTags } from '../components/ui/MetaTags';
 import { ArrowRight, GraduationCap, Users, Award } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { Course } from '../types/course';
@@ -37,6 +38,12 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaTags
+        title="Pós-Graduação HAM - Hospital Adventista de Manaus"
+        description="Cursos de pós-graduação em saúde oferecidos pelo Hospital Adventista de Manaus. Formação especializada com excelência e qualidade."
+        image={`${window.location.origin}/logo-ham.png`}
+        url={window.location.href}
+      />
       <Header />
       
       {/* Hero Section */}

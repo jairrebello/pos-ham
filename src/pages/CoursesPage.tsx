@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
+import { MetaTags } from '../components/ui/MetaTags';
 import { CourseCard } from '../components/courses/CourseCard';
 import { CourseFiltersComponent } from '../components/courses/CourseFilters';
 import ContactForm from '../components/forms/ContactForm';
@@ -20,7 +21,6 @@ export const CoursesPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = PAGE_TITLE;
     loadCourses();
   }, []);
 
@@ -87,6 +87,12 @@ export const CoursesPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <MetaTags
+        title="Cursos de Pós-Graduação - HAM"
+        description="Conheça todos os cursos de pós-graduação em saúde do Hospital Adventista de Manaus. Formação especializada com excelência e qualidade."
+        image={`${window.location.origin}/logo-ham.png`}
+        url={window.location.href}
+      />
       <Header />
       
       {/* Hero Section */}
