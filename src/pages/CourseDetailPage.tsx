@@ -318,6 +318,86 @@ export const CourseDetailPage: React.FC = () => {
                       </p>
                     </div>
                   </div>
+
+                  {/* Previsão de Início */}
+                  {course.start_forecast && (
+                    <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                      <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                        <h3 className="text-lg font-bold text-white">
+                          Previsão de Início
+                        </h3>
+                      </div>
+                      <div className="py-4 px-6">
+                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                          {course.start_forecast}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Local */}
+                  {course.location && (
+                    <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                      <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                        <h3 className="text-lg font-bold text-white">
+                          Local
+                        </h3>
+                      </div>
+                      <div className="py-4 px-6">
+                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                          {course.location}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Tempo Previsto */}
+                  {course.estimated_time && (
+                    <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                      <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                        <h3 className="text-lg font-bold text-white">
+                          Tempo Previsto
+                        </h3>
+                      </div>
+                      <div className="py-4 px-6">
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          {course.estimated_time}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Periodicidade das Aulas */}
+                  {course.class_frequency && (
+                    <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                      <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                        <h3 className="text-lg font-bold text-white">
+                          Periodicidade das Aulas
+                        </h3>
+                      </div>
+                      <div className="py-4 px-6">
+                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                          {course.class_frequency}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Investimento */}
+                  {course.investment && (
+                    <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                      <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                        <h3 className="text-lg font-bold text-white">
+                          Investimento
+                        </h3>
+                      </div>
+                      <div className="py-4 px-6">
+                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                          {course.investment}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -444,6 +524,86 @@ export const CourseDetailPage: React.FC = () => {
                   </p>
                 </div>
               </div>
+
+              {/* Previsão de Início */}
+              {course.start_forecast && (
+                <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                  <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                    <h3 className="text-lg font-bold text-white">
+                      Previsão de Início
+                    </h3>
+                  </div>
+                  <div className="py-4 px-6">
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                      {course.start_forecast}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Local */}
+              {course.location && (
+                <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                  <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                    <h3 className="text-lg font-bold text-white">
+                      Local
+                    </h3>
+                  </div>
+                  <div className="py-4 px-6">
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                      {course.location}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Tempo Previsto */}
+              {course.estimated_time && (
+                <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                  <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                    <h3 className="text-lg font-bold text-white">
+                      Tempo Previsto
+                    </h3>
+                  </div>
+                  <div className="py-4 px-6">
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      {course.estimated_time}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Periodicidade das Aulas */}
+              {course.class_frequency && (
+                <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                  <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                    <h3 className="text-lg font-bold text-white">
+                      Periodicidade das Aulas
+                    </h3>
+                  </div>
+                  <div className="py-4 px-6">
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                      {course.class_frequency}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Investimento */}
+              {course.investment && (
+                <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
+                  <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
+                    <h3 className="text-lg font-bold text-white">
+                      Investimento
+                    </h3>
+                  </div>
+                  <div className="py-4 px-6">
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                      {course.investment}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
