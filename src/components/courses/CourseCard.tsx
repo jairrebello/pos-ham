@@ -14,18 +14,8 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     hibrido: 'HÍBRIDO'
   };
 
-  const areaColors = {
-    educacao: 'bg-cyan-400',
-    gestao: 'bg-cyan-400',
-    saude: 'bg-cyan-400',
-    psicologia: 'bg-cyan-400',
-    tecnologia: 'bg-cyan-400',
-    direito: 'bg-cyan-400',
-    engenharia: 'bg-cyan-400'
-  };
-
-  const getAreaColor = (area: string) => {
-    return areaColors[area as keyof typeof areaColors] || 'bg-gray-400';
+  const getAreaColor = () => {
+    return 'rgb(34, 211, 238)';
   };
 
   const formatStartDate = (dateString: string) => {
@@ -53,7 +43,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       </div>
 
       {/* Faixa da área */}
-      <div className={`${getAreaColor(course.area)} px-6 py-3 flex items-center justify-between`}>
+      <div className="px-6 py-3 flex items-center justify-between" style={{ backgroundColor: getAreaColor() }}>
         <span className="text-white font-bold text-sm uppercase tracking-wide">
           {course.area}
         </span>
