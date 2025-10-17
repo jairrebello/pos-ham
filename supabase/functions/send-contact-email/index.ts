@@ -65,9 +65,9 @@ Deno.serve(async (req: Request) => {
     const courseTitle = submission.pos_cursos?.title || "Curso não especificado";
     const interestLabel = submission.interest === "matricular" ? "Matricular-se" : "Conhecer mais";
 
-    // Send email using Resend
+    // Send email using Resend with onboarding@resend.dev (for testing without domain)
     const { data: emailData, error: emailError } = await resend.emails.send({
-      from: "Pós-Graduação HAM <contato@hamposead.com>",
+      from: "onboarding@resend.dev",
       to: ["jair.rebello@gmail.com"],
       subject: `Novo contato: ${interestLabel} - ${courseTitle}`,
       html: `
