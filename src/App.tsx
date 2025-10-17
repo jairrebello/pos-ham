@@ -7,6 +7,7 @@ import { DashboardPage } from './pages/admin/DashboardPage';
 import { CoursesListPage } from './pages/admin/CoursesListPage';
 import { SetupPage } from './pages/admin/SetupPage';
 import { CourseFormPage } from './pages/admin/CourseFormPage';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -35,14 +36,14 @@ function App() {
     } else if (currentPath === '/admin/setup') {
       return <SetupPage />;
     } else if (currentPath === '/admin') {
-      return <DashboardPage />;
+      return <ProtectedRoute><DashboardPage /></ProtectedRoute>;
     } else if (currentPath === '/admin/courses') {
-      return <CoursesListPage />;
+      return <ProtectedRoute><CoursesListPage /></ProtectedRoute>;
     } else if (currentPath === '/admin/courses/new') {
-      return <CourseFormPage />;
+      return <ProtectedRoute><CourseFormPage /></ProtectedRoute>;
     } else if (currentPath.startsWith('/admin/courses/edit/')) {
       const courseId = currentPath.split('/').pop();
-      return <CourseFormPage courseId={courseId} />;
+      return <ProtectedRoute><CourseFormPage courseId={courseId} /></ProtectedRoute>;
     } else {
       return <HomePage />;
     }

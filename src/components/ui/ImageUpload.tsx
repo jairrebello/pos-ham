@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
 import { Button } from './Button';
 import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface ImageUploadProps {
   label?: string;
@@ -18,12 +19,17 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   error,
   className = ''
 }) => {
+  const { user, session } = useAuth();
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const uploadImage = async (file: File) => {
     try {
+      if (!user || !session) {
+        throw new Error('Você precisa estar autenticado para fazer upload de imagens');
+      }
+
       setUploading(true);
 
       // Validar tipo de arquivo

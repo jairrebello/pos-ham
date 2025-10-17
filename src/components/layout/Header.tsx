@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Menu, X, ChevronDown, Building2, Briefcase, GraduationCap, HeartPulse, Info, Users } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, Building2, Briefcase, GraduationCap, HeartPulse, Info, Users, LogOut, User } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface HeaderProps {
   isAdmin?: boolean;
@@ -132,6 +133,14 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
   };
 
   if (isAdmin) {
+    const { user, signOut } = useAuth();
+
+    const handleSignOut = async () => {
+      if (window.confirm('Deseja realmente sair?')) {
+        await signOut();
+      }
+    };
+
     return (
       <header className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -144,6 +153,22 @@ export const Header: React.FC<HeaderProps> = ({ isAdmin = false }) => {
             <nav className="flex items-center space-x-6">
               <a href="/admin" className="text-gray-700 hover:text-[#02558C] font-medium">Dashboard</a>
               <a href="/admin/courses" className="text-gray-700 hover:text-[#02558C] font-medium">Cursos</a>
+              {user && (
+                <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-gray-300">
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <User className="h-4 w-4" />
+                    <span className="text-sm">{user.email}</span>
+                  </div>
+                  <button
+                    onClick={handleSignOut}
+                    className="flex items-center space-x-1 text-gray-700 hover:text-red-600 font-medium transition-colors"
+                    title="Sair"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    <span className="text-sm">Sair</span>
+                  </button>
+                </div>
+              )}
             </nav>
           </div>
         </div>
