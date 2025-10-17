@@ -272,15 +272,17 @@ export const CourseDetailPage: React.FC = () => {
                       </h3>
                     </div>
                     <div className="py-4 px-6">
-                      <p className="text-sm text-gray-700 leading-relaxed mb-3">
-                        Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
+                      <p className="text-sm text-gray-700 font-semibold leading-relaxed mb-2">
+                        {course.modality === 'presencial' && 'Presencial'}
+                        {course.modality === 'online' && 'Online (Ao Vivo)'}
+                        {course.modality === 'ead' && 'EAD'}
+                        {course.modality === 'hibrido' && 'Híbrido'}
                       </p>
-                      <p className="text-sm text-gray-700 leading-relaxed">
-                        <strong>OBS.:</strong> Podendo haver até três aulas presenciais durante o curso.
-                      </p>
-                      <p className="text-sm text-gray-700 leading-relaxed">
-                        Estágios presenciais.
-                      </p>
+                      {course.modality_complement && (
+                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                          {course.modality_complement}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -306,10 +308,13 @@ export const CourseDetailPage: React.FC = () => {
                       </h3>
                     </div>
                     <div className="py-4 px-6">
-                      <p className="text-sm text-gray-700">Mínimo: 20</p>
-                      <p className="text-sm text-gray-700">Máximo: {course.max_students}</p>
-                      <p className="text-sm font-bold mt-2" style={{ color: '#21D3EE' }}>
+                      <p className="text-sm text-gray-700">Mínimo: {course.min_students}</p>
+                      <p className="text-sm text-gray-700 mb-2">Máximo: {course.max_students}</p>
+                      <p className="text-sm font-bold mb-3" style={{ color: '#21D3EE' }}>
                         Vagas limitadas
+                      </p>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        O HAM se reserva o direito de prorrogar o início do curso ou cancelá-lo caso não tenha atingido o número mínimo de alunos. Não havendo abertura da turma, o aluno é reembolsado integralmente do valor pago.
                       </p>
                     </div>
                   </div>
@@ -395,15 +400,17 @@ export const CourseDetailPage: React.FC = () => {
                   </h3>
                 </div>
                 <div className="py-4 px-6">
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
-                    Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
+                  <p className="text-sm text-gray-700 font-semibold leading-relaxed mb-2">
+                    {course.modality === 'presencial' && 'Presencial'}
+                    {course.modality === 'online' && 'Online (Ao Vivo)'}
+                    {course.modality === 'ead' && 'EAD'}
+                    {course.modality === 'hibrido' && 'Híbrido'}
                   </p>
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    <strong>OBS.:</strong> Podendo haver até três aulas presenciais durante o curso.
-                  </p>
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    Estágios presenciais.
-                  </p>
+                  {course.modality_complement && (
+                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                      {course.modality_complement}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -427,10 +434,13 @@ export const CourseDetailPage: React.FC = () => {
                   </h3>
                 </div>
                 <div className="py-4 px-6">
-                  <p className="text-sm text-gray-700">Mínimo: 20</p>
-                  <p className="text-sm text-gray-700">Máximo: {course.max_students}</p>
-                  <p className="text-sm font-bold mt-2" style={{ color: '#21D3EE' }}>
+                  <p className="text-sm text-gray-700">Mínimo: {course.min_students}</p>
+                  <p className="text-sm text-gray-700 mb-2">Máximo: {course.max_students}</p>
+                  <p className="text-sm font-bold mb-3" style={{ color: '#21D3EE' }}>
                     Vagas limitadas
+                  </p>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    O HAM se reserva o direito de prorrogar o início do curso ou cancelá-lo caso não tenha atingido o número mínimo de alunos. Não havendo abertura da turma, o aluno é reembolsado integralmente do valor pago.
                   </p>
                 </div>
               </div>
