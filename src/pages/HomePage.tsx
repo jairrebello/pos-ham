@@ -14,7 +14,7 @@ export const HomePage: React.FC = () => {
     const fetchFeaturedCourses = async () => {
       try {
         const { data, error } = await supabase
-          .from('courses')
+          .from('pos_cursos')
           .select('*')
           .eq('status', 'active')
           .order('created_at', { ascending: false })

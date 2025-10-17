@@ -37,10 +37,10 @@ export const CourseDetailPage: React.FC = () => {
       setLoading(true);
       
       const { data, error } = await supabase
-        .from('courses')
+        .from('pos_cursos')
         .select('*')
         .eq('slug', courseId)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
 

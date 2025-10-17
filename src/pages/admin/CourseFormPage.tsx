@@ -80,10 +80,10 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
     setLoading(true);
     try {
       const { data, error } = await supabase
-        .from('courses')
+        .from('pos_cursos')
         .select('*')
         .eq('id', courseId)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
 
@@ -245,13 +245,13 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
       if (courseId) {
         // Atualizar curso existente
         result = await supabase
-          .from('courses')
+          .from('pos_cursos')
           .update(courseData)
           .eq('id', courseId);
       } else {
         // Criar novo curso
         result = await supabase
-          .from('courses')
+          .from('pos_cursos')
           .insert([courseData]);
       }
 

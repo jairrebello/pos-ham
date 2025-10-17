@@ -18,9 +18,9 @@ export default function ContactForm() {
 
   const fetchCourses = async () => {
     const { data } = await supabase
-      .from('courses')
+      .from('pos_cursos')
       .select('id, title')
-      .eq('is_published', true)
+      .eq('status', 'active')
       .order('title');
 
     if (data) {

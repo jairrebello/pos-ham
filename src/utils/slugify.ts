@@ -19,7 +19,7 @@ export const generateUniqueSlug = async (title: string, courseId?: string): Prom
   while (true) {
     // Verificar se o slug já existe (excluindo o curso atual se estiver editando)
     let query = supabase
-      .from('courses')
+      .from('pos_cursos')
       .select('id')
       .eq('slug', slug);
     

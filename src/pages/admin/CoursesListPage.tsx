@@ -20,7 +20,7 @@ export const CoursesListPage: React.FC = () => {
       setError('');
       
       const { data, error } = await supabase
-        .from('courses')
+        .from('pos_cursos')
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -44,7 +44,7 @@ export const CoursesListPage: React.FC = () => {
   const deleteCourse = async (id: string) => {
     try {
       const { error } = await supabase
-        .from('courses')
+        .from('pos_cursos')
         .delete()
         .eq('id', id);
 

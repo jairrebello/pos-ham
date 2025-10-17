@@ -26,7 +26,7 @@ export const CoursesPage: React.FC = () => {
       setLoading(true);
       
       const { data, error } = await supabase
-        .from('courses')
+        .from('pos_cursos')
         .select('*')
         .eq('status', 'active')
         .order('created_at', { ascending: false });
