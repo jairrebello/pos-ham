@@ -10,6 +10,9 @@ export interface Course {
   min_students: number;
   max_students: number;
   start_date: string;
+  start_forecast: string;
+  estimated_time: string;
+  class_frequency: string;
   location: string;
   investment: string;
   contact_us: string;
@@ -20,6 +23,7 @@ export interface Course {
     program: string[];
     coordination_general: string;
     coordination_general_photo: string;
+    coordination_polo_ham: string;
     coordination: string;
     coordination_photo: string;
     requirements: string;

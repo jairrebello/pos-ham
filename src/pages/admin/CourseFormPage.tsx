@@ -32,6 +32,9 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
     min_students: 0,
     max_students: 0,
     start_date: '',
+    start_forecast: '',
+    estimated_time: '',
+    class_frequency: '',
     location: '',
     investment: '',
     contact_us: '',
@@ -42,6 +45,7 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
       program: [{ name: '', hours: 0 }],
       coordination_general: '',
       coordination_general_photo: '',
+      coordination_polo_ham: '',
       coordination: '',
       coordination_photo: '',
       requirements: ''
@@ -99,6 +103,9 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
           min_students: data.min_students || 0,
           max_students: data.max_students,
           start_date: data.start_date || '',
+          start_forecast: data.start_forecast || '',
+          estimated_time: data.estimated_time || '',
+          class_frequency: data.class_frequency || '',
           location: data.location || '',
           investment: data.investment || '',
           contact_us: data.contact_us || '',
@@ -111,6 +118,7 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
             ) || [{ name: '', hours: 0 }],
             coordination_general: data.content?.coordination_general || '',
             coordination_general_photo: data.content?.coordination_general_photo || '',
+            coordination_polo_ham: data.content?.coordination_polo_ham || '',
             coordination: data.content?.coordination || '',
             coordination_photo: data.content?.coordination_photo || '',
             requirements: Array.isArray(data.content?.requirements)
@@ -227,6 +235,9 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
         min_students: Number(formData.min_students),
         max_students: Number(formData.max_students),
         start_date: formData.start_date || null,
+        start_forecast: formData.start_forecast.trim(),
+        estimated_time: formData.estimated_time.trim(),
+        class_frequency: formData.class_frequency.trim(),
         location: formData.location.trim(),
         investment: formData.investment.trim(),
         contact_us: formData.contact_us.trim(),
@@ -237,6 +248,7 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
           program: cleanedProgram,
           coordination_general: formData.content.coordination_general.trim(),
           coordination_general_photo: formData.content.coordination_general_photo.trim(),
+          coordination_polo_ham: formData.content.coordination_polo_ham.trim(),
           coordination: formData.content.coordination.trim(),
           coordination_photo: formData.content.coordination_photo.trim(),
           requirements: formData.content.requirements.trim()
@@ -434,6 +446,33 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
 
               <div className="md:col-span-2">
                 <TextArea
+                  label="Previsão de Início"
+                  value={formData.start_forecast}
+                  onChange={(e) => handleInputChange('start_forecast', e.target.value)}
+                  placeholder="Informações sobre a previsão de início do curso"
+                  rows={3}
+                />
+              </div>
+
+              <Input
+                label="Tempo Previsto"
+                value={formData.estimated_time}
+                onChange={(e) => handleInputChange('estimated_time', e.target.value)}
+                placeholder="Ex: 18 meses, 2 anos, etc."
+              />
+
+              <div className="md:col-span-2">
+                <TextArea
+                  label="Periodicidade das Aulas"
+                  value={formData.class_frequency}
+                  onChange={(e) => handleInputChange('class_frequency', e.target.value)}
+                  placeholder="Informações sobre a periodicidade das aulas (dias da semana, horários, etc.)"
+                  rows={3}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <TextArea
                   label="Local"
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
@@ -504,6 +543,15 @@ export const CourseFormPage: React.FC<CourseFormPageProps> = ({ courseId }) => {
                   />
                 </div>
               </div>
+
+              {/* Coordenação Polo HAM */}
+              <TextArea
+                label="Coordenação Polo HAM"
+                value={formData.content.coordination_polo_ham}
+                onChange={(e) => handleContentChange('coordination_polo_ham', e.target.value)}
+                placeholder="Informações sobre a coordenação do Polo HAM"
+                rows={4}
+              />
 
               {/* Coordenação */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
