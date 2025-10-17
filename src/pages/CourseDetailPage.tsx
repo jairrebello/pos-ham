@@ -249,41 +249,44 @@ export const CourseDetailPage: React.FC = () => {
       {/* Main Content Area */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Desktop: Two Column Layout */}
-          <div className="hidden lg:grid lg:grid-cols-12 lg:gap-8">
-            {/* Left Sidebar */}
-            <div className="lg:col-span-4 xl:col-span-3">
-              <div className="space-y-6 sticky top-6">
-                {/* Matricule-se Button */}
+          {/* Desktop: Layout */}
+          <div className="hidden lg:block">
+            {/* Horizontal Navigation Bar */}
+            <div className="flex gap-4 mb-8">
+              {/* Matricule-se Button */}
+              <button
+                className="py-4 px-8 font-bold text-white transition-all duration-200 hover:opacity-90 whitespace-nowrap"
+                style={{ backgroundColor: '#21D3EE' }}
+              >
+                Matricule-se já!
+              </button>
+
+              {/* Navigation Buttons */}
+              {tabs.map((tab) => (
                 <button
-                  className="w-full py-4 px-6 text-left font-bold text-white transition-all duration-200 hover:opacity-90"
-                  style={{ backgroundColor: '#21D3EE' }}
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`py-4 px-8 font-semibold transition-all duration-200 whitespace-nowrap ${
+                    activeTab === tab.id
+                      ? 'ring-2 ring-offset-2'
+                      : 'hover:opacity-80'
+                  }`}
+                  style={{
+                    backgroundColor: '#02558C',
+                    color: 'white',
+                    ringColor: activeTab === tab.id ? '#21D3EE' : 'transparent'
+                  }}
                 >
-                  Matricule-se já!
+                  {tab.label}
                 </button>
+              ))}
+            </div>
 
-                {/* Navigation Buttons */}
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`w-full py-4 px-6 text-left font-semibold transition-all duration-200 ${
-                      activeTab === tab.id
-                        ? 'ring-2 ring-offset-2'
-                        : 'hover:opacity-80'
-                    }`}
-                    style={{
-                      backgroundColor: '#02558C',
-                      color: 'white',
-                      ringColor: activeTab === tab.id ? '#21D3EE' : 'transparent'
-                    }}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-
-                {/* Info Cards */}
-                <div className="space-y-4 pt-4">
+            {/* Two Column Layout */}
+            <div className="grid grid-cols-12 gap-8">
+              {/* Left Sidebar - Info Cards */}
+              <div className="col-span-4 xl:col-span-3">
+                <div className="space-y-4">
                   {/* Modalidade */}
                   <div className="bg-white p-5 rounded-lg shadow-md">
                     <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
@@ -320,12 +323,12 @@ export const CourseDetailPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right Content Area */}
-            <div className="lg:col-span-8 xl:col-span-9">
-              <div className="bg-white rounded-lg shadow-md p-8">
-                {renderTabContent(activeTab)}
+              {/* Right Content Area */}
+              <div className="col-span-8 xl:col-span-9">
+                <div className="bg-white rounded-lg shadow-md p-8">
+                  {renderTabContent(activeTab)}
+                </div>
               </div>
             </div>
           </div>
