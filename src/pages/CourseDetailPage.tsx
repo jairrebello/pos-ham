@@ -251,42 +251,18 @@ export const CourseDetailPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop: Layout */}
           <div className="hidden lg:block">
-            {/* Horizontal Navigation Bar */}
-            <div className="flex gap-4 mb-8">
-              {/* Matricule-se Button */}
-              <button
-                className="py-4 px-8 font-bold text-white transition-all duration-200 hover:opacity-90 whitespace-nowrap"
-                style={{ backgroundColor: '#21D3EE' }}
-              >
-                Matricule-se já!
-              </button>
-
-              {/* Navigation Buttons */}
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-4 px-8 font-semibold transition-all duration-200 whitespace-nowrap ${
-                    activeTab === tab.id
-                      ? 'ring-2 ring-offset-2'
-                      : 'hover:opacity-80'
-                  }`}
-                  style={{
-                    backgroundColor: '#02558C',
-                    color: 'white',
-                    ringColor: activeTab === tab.id ? '#21D3EE' : 'transparent'
-                  }}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
             {/* Two Column Layout */}
             <div className="grid grid-cols-12 gap-8">
               {/* Left Sidebar - Info Cards */}
               <div className="col-span-4 xl:col-span-3">
                 <div className="space-y-6">
+                  {/* Matricule-se Button */}
+                  <button
+                    className="w-full py-4 px-6 font-bold text-white transition-all duration-200 hover:opacity-90"
+                    style={{ backgroundColor: '#21D3EE' }}
+                  >
+                    Matricule-se já!
+                  </button>
                   {/* Modalidade */}
                   <div className="overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
                     <div className="py-4 px-6" style={{ backgroundColor: '#02558C' }}>
@@ -341,6 +317,29 @@ export const CourseDetailPage: React.FC = () => {
 
               {/* Right Content Area */}
               <div className="col-span-8 xl:col-span-9">
+                {/* Navigation Tabs */}
+                <div className="flex gap-4 mb-6">
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`py-3 px-6 font-semibold transition-all duration-200 whitespace-nowrap ${
+                        activeTab === tab.id
+                          ? 'ring-2 ring-offset-2'
+                          : 'hover:opacity-80'
+                      }`}
+                      style={{
+                        backgroundColor: '#02558C',
+                        color: 'white',
+                        ringColor: activeTab === tab.id ? '#21D3EE' : 'transparent'
+                      }}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Content Box */}
                 <div className="bg-white rounded-lg shadow-md p-8">
                   {renderTabContent(activeTab)}
                 </div>
