@@ -101,11 +101,11 @@ export const CourseDetailPage: React.FC = () => {
       return (
         <div className="space-y-8">
           <div>
-            <h2 className="text-xl font-bold text-blue-900 mb-4">SOBRE O CURSO</h2>
+            <h2 className="text-xl font-bold mb-4" style={{ color: '#02558C' }}>Sobre o curso</h2>
             <p className="text-gray-700 leading-relaxed">{course?.content.about}</p>
           </div>
           <div>
-            <h2 className="text-xl font-bold text-blue-900 mb-4">A QUEM SE DESTINA?</h2>
+            <h2 className="text-xl font-bold mb-4" style={{ color: '#02558C' }}>A quem se destina?</h2>
             <p className="text-gray-700 leading-relaxed">{course?.content.target_audience}</p>
           </div>
         </div>
@@ -115,12 +115,12 @@ export const CourseDetailPage: React.FC = () => {
     if (tabId === 'programa') {
       return (
         <div>
-          <h2 className="text-xl font-bold text-blue-900 mb-4">PROGRAMA DO CURSO</h2>
+          <h2 className="text-xl font-bold mb-4" style={{ color: '#02558C' }}>Programa do Curso</h2>
           <div className="space-y-4">
             {course?.content.program.map((item, index) => (
               <div key={index} className="flex items-start justify-between p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-start flex-1">
-                  <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                  <span className="rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5" style={{ backgroundColor: '#21D3EE', color: 'white' }}>
                     {index + 1}
                   </span>
                   <span className="text-gray-700 font-medium">
@@ -128,7 +128,7 @@ export const CourseDetailPage: React.FC = () => {
                   </span>
                 </div>
                 {typeof item === 'object' && item.hours > 0 && (
-                  <div className="text-sm text-blue-600 font-semibold">
+                  <div className="text-sm font-semibold" style={{ color: '#02558C' }}>
                     {item.hours}h
                   </div>
                 )}
@@ -142,7 +142,7 @@ export const CourseDetailPage: React.FC = () => {
     if (tabId === 'coordenacao') {
       return (
         <div>
-          <h2 className="text-xl font-bold text-blue-900 mb-4">COORDENAÇÃO</h2>
+          <h2 className="text-xl font-bold mb-4" style={{ color: '#02558C' }}>Coordenação</h2>
           
           {/* Coordenação Geral */}
           {(course?.content.coordination_general || course?.content.coordination_general_photo) && (
@@ -206,7 +206,7 @@ export const CourseDetailPage: React.FC = () => {
     if (tabId === 'documentos') {
       return (
         <div>
-          <h2 className="text-xl font-bold text-blue-900 mb-4">DOCUMENTOS NECESSÁRIOS</h2>
+          <h2 className="text-xl font-bold mb-4" style={{ color: '#02558C' }}>Documentos</h2>
           <div 
             className="prose prose-sm max-w-none text-gray-700"
             dangerouslySetInnerHTML={{ 
@@ -227,152 +227,180 @@ export const CourseDetailPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+
+      {/* Hero Section with Image */}
+      <section className="relative">
+        <img
+          src={course.image_url}
+          alt={course.title}
+          className="w-full h-96 object-cover"
+        />
+      </section>
+
+      {/* Title Bar */}
+      <section className="py-6" style={{ backgroundColor: '#02558C' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Detalhes do Curso</h1>
-          </div>
+          <h1 className="text-3xl md:text-4xl font-bold" style={{ color: '#21D3EE' }}>
+            {course.title}
+          </h1>
         </div>
       </section>
 
+      {/* Main Content Area */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Course Header */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-            <img
-              src={course.image_url}
-              alt={course.title}
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-6">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">{course.title}</h1>
-            </div>
-          </div>
+          {/* Desktop: Two Column Layout */}
+          <div className="hidden lg:grid lg:grid-cols-12 lg:gap-8">
+            {/* Left Sidebar */}
+            <div className="lg:col-span-4 xl:col-span-3">
+              <div className="space-y-6 sticky top-6">
+                {/* Matricule-se Button */}
+                <button
+                  className="w-full py-4 px-6 text-left font-bold text-white transition-all duration-200 hover:opacity-90"
+                  style={{ backgroundColor: '#21D3EE' }}
+                >
+                  Matricule-se já!
+                </button>
 
-          {/* Desktop Tabs / Mobile Accordions */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-            {/* Desktop Tabs */}
-            <div className="border-b hidden md:block">
-              <nav className="flex space-x-8">
+                {/* Navigation Buttons */}
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`py-4 px-6 text-sm font-medium border-b-2 ${
+                    className={`w-full py-4 px-6 text-left font-semibold transition-all duration-200 ${
                       activeTab === tab.id
-                        ? 'text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700'
+                        ? 'ring-2 ring-offset-2'
+                        : 'hover:opacity-80'
                     }`}
-                    style={activeTab === tab.id ? { borderBottomColor: '#02558C', color: '#02558C' } : {}}
+                    style={{
+                      backgroundColor: '#02558C',
+                      color: 'white',
+                      ringColor: activeTab === tab.id ? '#21D3EE' : 'transparent'
+                    }}
                   >
                     {tab.label}
                   </button>
                 ))}
-              </nav>
+
+                {/* Info Cards */}
+                <div className="space-y-4 pt-4">
+                  {/* Modalidade */}
+                  <div className="bg-white p-5 rounded-lg shadow-md">
+                    <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
+                      <GraduationCap className="w-5 h-5 mr-2" />
+                      Modalidade
+                    </h3>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
+                    </p>
+                  </div>
+
+                  {/* Carga Horária */}
+                  <div className="bg-white p-5 rounded-lg shadow-md">
+                    <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
+                      <Clock className="w-5 h-5 mr-2" />
+                      Carga horária
+                    </h3>
+                    <p className="text-lg font-bold" style={{ color: '#02558C' }}>
+                      {course.duration_hours} horas
+                    </p>
+                  </div>
+
+                  {/* Vagas */}
+                  <div className="bg-white p-5 rounded-lg shadow-md">
+                    <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
+                      <Users className="w-5 h-5 mr-2" />
+                      Vagas
+                    </h3>
+                    <p className="text-xs text-gray-600">Mínimo: 20</p>
+                    <p className="text-xs text-gray-600">Máximo: {course.max_students}</p>
+                    <p className="text-xs font-semibold mt-2" style={{ color: '#21D3EE' }}>
+                      Vagas limitadas
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Desktop Tab Content */}
-            <div className="p-6 hidden md:block">
-              {renderTabContent(activeTab)}
+            {/* Right Content Area */}
+            <div className="lg:col-span-8 xl:col-span-9">
+              <div className="bg-white rounded-lg shadow-md p-8">
+                {renderTabContent(activeTab)}
+              </div>
             </div>
+          </div>
 
-            {/* Mobile Accordions */}
-            <div className="md:hidden">
+          {/* Mobile: Accordion Layout */}
+          <div className="lg:hidden space-y-6">
+            {/* Matricule-se Button */}
+            <button
+              className="w-full py-4 px-6 text-center font-bold text-white transition-all duration-200 hover:opacity-90 rounded-lg"
+              style={{ backgroundColor: '#21D3EE' }}
+            >
+              Matricule-se já!
+            </button>
+
+            {/* Accordions */}
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
               {tabs.map((tab) => (
                 <div key={tab.id} className="border-b border-gray-200 last:border-b-0">
                   <button
                     onClick={() => toggleAccordion(tab.id)}
-                    className="w-full px-6 py-4 text-left flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors"
+                    className="w-full px-6 py-4 text-left flex items-center justify-between transition-colors"
+                    style={{
+                      backgroundColor: openAccordions[tab.id] ? '#02558C' : 'white',
+                      color: openAccordions[tab.id] ? 'white' : '#02558C'
+                    }}
                   >
-                    <span className="font-medium text-gray-900">{tab.label}</span>
+                    <span className="font-semibold">{tab.label}</span>
                     {openAccordions[tab.id] ? (
-                      <ChevronUp className="h-5 w-5 text-gray-500" />
+                      <ChevronUp className="h-5 w-5" />
                     ) : (
-                      <ChevronDown className="h-5 w-5 text-gray-500" />
+                      <ChevronDown className="h-5 w-5" />
                     )}
                   </button>
                   {openAccordions[tab.id] && (
-                    <div className="px-6 py-4">
+                    <div className="px-6 py-6 bg-gray-50">
                       {renderTabContent(tab.id)}
                     </div>
                   )}
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Sidebar - Informações do Curso */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {/* Matricule-se */}
-            <div className="bg-blue-900 text-white p-6 rounded-lg">
-              <h3 className="text-lg font-bold mb-4">MATRICULE-SE JÁ</h3>
-              <p className="text-sm mb-4">Precisa de ajuda para realizar sua inscrição?</p>
-              <Button className="w-full bg-teal-600 hover:bg-teal-700">
-                CLIQUE AQUI
-              </Button>
-            </div>
-
-            {/* Modalidade */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-lg font-bold mb-4 flex items-center">
-                <GraduationCap className="w-5 h-5 mr-3 text-blue-600" />
-                Modalidade
-              </h3>
-              <p className="text-sm text-gray-600 mb-2">
-                Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
-              </p>
-            </div>
-
-            {/* Carga Horária */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-lg font-bold mb-4 flex items-center">
-                <Clock className="w-5 h-5 mr-3 text-blue-600" />
-                Carga Horária
-              </h3>
-              <p className="text-xl font-bold">{course.duration_hours} horas</p>
-            </div>
-
-            {/* Número de vagas */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-lg font-bold mb-4 flex items-center">
-                <Users className="w-5 h-5 mr-3 text-blue-600" />
-                Número de vagas
-              </h3>
-              <p className="text-sm text-gray-600">Número mínimo: 20</p>
-              <p className="text-sm text-gray-600">Número máximo: {course.max_students}</p>
-              <p className="text-sm text-red-600 mt-2">(Vagas limitadas)</p>
-            </div>
-
-            {/* Previsão de início */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-lg font-bold mb-4 flex items-center">
-                <Calendar className="w-5 h-5 mr-3 text-blue-600" />
-                Previsão de início
-              </h3>
-              {course.start_date ? (
-                <p className="text-sm text-gray-600">
-                  Em {new Date(course.start_date + 'T00:00:00').toLocaleDateString('pt-BR', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                  })}, conforme preenchimento das vagas e formação da turma.
+            {/* Info Cards Mobile */}
+            <div className="space-y-4">
+              <div className="bg-white p-5 rounded-lg shadow-md">
+                <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
+                  <GraduationCap className="w-5 h-5 mr-2" />
+                  Modalidade
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Aulas virtuais (síncronas, ao vivo), com materiais e atividades disponíveis em ambiente virtual.
                 </p>
-              ) : (
-                <p className="text-sm text-gray-600">
-                  A definir, conforme preenchimento das vagas e formação da turma.
-                </p>
-              )}
-            </div>
+              </div>
 
-            {/* Local */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-lg font-bold mb-4 flex items-center">
-                <MapPin className="w-5 h-5 mr-3 text-blue-600" />
-                Local
-              </h3>
-              <p className="text-sm text-gray-600">{course.location}</p>
+              <div className="bg-white p-5 rounded-lg shadow-md">
+                <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
+                  <Clock className="w-5 h-5 mr-2" />
+                  Carga horária
+                </h3>
+                <p className="text-lg font-bold" style={{ color: '#02558C' }}>
+                  {course.duration_hours} horas
+                </p>
+              </div>
+
+              <div className="bg-white p-5 rounded-lg shadow-md">
+                <h3 className="text-base font-bold mb-3 flex items-center" style={{ color: '#02558C' }}>
+                  <Users className="w-5 h-5 mr-2" />
+                  Vagas
+                </h3>
+                <p className="text-sm text-gray-600">Mínimo: 20</p>
+                <p className="text-sm text-gray-600">Máximo: {course.max_students}</p>
+                <p className="text-sm font-semibold mt-2" style={{ color: '#21D3EE' }}>
+                  Vagas limitadas
+                </p>
+              </div>
             </div>
           </div>
         </div>
