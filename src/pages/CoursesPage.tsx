@@ -7,6 +7,8 @@ import ContactForm from '../components/forms/ContactForm';
 import { supabase } from '../lib/supabase';
 import type { Course, CourseFilters } from '../types/course';
 
+const PAGE_TITLE = 'Pós Graduação - Hospital Adventista de Manaus';
+
 export const CoursesPage: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
@@ -18,6 +20,7 @@ export const CoursesPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = PAGE_TITLE;
     loadCourses();
   }, []);
 

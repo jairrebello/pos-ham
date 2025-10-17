@@ -32,6 +32,12 @@ export const CourseDetailPage: React.FC = () => {
     }
   }, [courseId]);
 
+  useEffect(() => {
+    if (course) {
+      document.title = `${course.title} - Pós Graduação - Hospital Adventista de Manaus`;
+    }
+  }, [course]);
+
   const loadCourse = async () => {
     try {
       setLoading(true);
